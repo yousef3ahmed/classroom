@@ -9,6 +9,7 @@ import style from "./Box.module.css";
 import style2 from "../Loading/Loading.module.css";
 import apis from "../apis/auth";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 export default function Box() {
   const [isValidEmail, setValidEmail] = React.useState(true);
@@ -106,6 +107,15 @@ export default function Box() {
         setIsLoding(false);
       })
       .catch((err) => {
+        toast.error(
+            <div>
+              some error accour when we processing your data <br />
+              try again
+            </div>,
+            {
+              autoClose: 5000,
+            }
+          );
         setIsLoding(false);
         console.log(err.message);
       });
@@ -196,6 +206,13 @@ export default function Box() {
         >
           Login
         </Button>
+
+        <p style={{ marginTop: "16px" }}>
+          Don't have an account?{" "}
+          <Link to="/signup" style={{ color: "#E0786C" }}>
+            Sign up
+          </Link>
+        </p>
       </div>
     </>
   );

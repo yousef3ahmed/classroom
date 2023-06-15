@@ -4,11 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Login from './login/Login';
+import { toast, ToastContainer } from "react-toastify";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <ToastContainer position="top-center" autoClose={750} />
     <App />
     {/* <Login/> */}
   </React.StrictMode>
