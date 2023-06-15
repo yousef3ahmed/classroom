@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/class-room/static/css/main.b1fbad40.css",
-    "main.js": "/class-room/static/js/main.1d2719ef.js",
-    "static/js/787.b0fa2678.chunk.js": "/class-room/static/js/787.b0fa2678.chunk.js",
-    "static/media/background.svg": "/class-room/static/media/background.4a66b503f6635da397ce7b7e977a1c2f.svg",
-    "static/media/logo.svg": "/class-room/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/class-room/index.html",
-    "main.b1fbad40.css.map": "/class-room/static/css/main.b1fbad40.css.map",
-    "main.1d2719ef.js.map": "/class-room/static/js/main.1d2719ef.js.map",
-    "787.b0fa2678.chunk.js.map": "/class-room/static/js/787.b0fa2678.chunk.js.map"
+    "main.css": "/classroom/static/css/main.b1fbad40.css",
+    "main.js": "/classroom/static/js/main.78791655.js",
+    "static/js/787.b0fa2678.chunk.js": "/classroom/static/js/787.b0fa2678.chunk.js",
+    "static/media/background.svg": "/classroom/static/media/background.4a66b503f6635da397ce7b7e977a1c2f.svg",
+    "static/media/logo.svg": "/classroom/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/classroom/index.html",
+    "main.b1fbad40.css.map": "/classroom/static/css/main.b1fbad40.css.map",
+    "main.78791655.js.map": "/classroom/static/js/main.78791655.js.map",
+    "787.b0fa2678.chunk.js.map": "/classroom/static/js/787.b0fa2678.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b1fbad40.css",
-    "static/js/main.1d2719ef.js"
+    "static/js/main.78791655.js"
   ]
 }
