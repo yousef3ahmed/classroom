@@ -1,8 +1,8 @@
 import React, { useEffect, Fragment } from "react";
-import { ReactComponent as BackGround } from "../assets/background.svg";
+import { ReactComponent as BackGround } from "../../assets/background.svg";
 import LoginBox from "./Box";
 import styles from "./Box.module.css";
-import LoadingPage from "../Loading/Loading";
+import LoadingPage from "../../components/Loading/Loading";
 import { useNavigate } from "react-router-dom";
 
 function Signup() {

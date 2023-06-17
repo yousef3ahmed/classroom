@@ -1,13 +1,12 @@
 import React, { Fragment } from "react";
 import { useEffect } from "react";
-import TextField from "@mui/material/TextField";
+import TextField from "../../components/TextField/TestField.component.jsx";
 import InputAdornment from "@mui/material/InputAdornment";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
-import Button from "../components/Button/Button.component";
-import { getTextFieldStyles } from "./TextFelStyle";
+import Button from "../../components/Button/Button.component.jsx";
 import style from "./Box.module.css";
-import style2 from "../Loading/Loading.module.css";
-import apis from "../apis/auth";
+import style2 from "../../components/Loading/Loading.module.css";
+import apis from "../../apis/auth";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 
@@ -102,76 +101,28 @@ export default function Box() {
     <Fragment>
       <div className={style.inner_divv}>
         <h2>Log In</h2>
-
         <TextField
           autoFocus
           label="Email"
           hiddenLabel
           value={email}
+          buttonWidth={buttonWidth}
           onChange={handleEmailChange}
           {...(isValidEmail ? {} : ErrorProps)}
           {...(sendEmail ? successProps : {})}
-          sx={{
-            ...getTextFieldStyles(buttonWidth),
-            fontFamily: "Poppins",
-            fontSize: "5px",
-            minWidth: "210px",
-          }}
-          className={style.weg}
-          InputLabelProps={{
-            sx: {
-              fontFamily: "Poppins",
-              fontSize: "16px",
-            },
-          }}
-          InputProps={{
-            sx: {
-              fontFamily: "Poppins",
-              fontSize: "16px",
-            },
-          }}
-          onKeyPress={(e) => {
-            if (e.key === "Enter") {
-              handleSendLink();
-            }
-          }}
+          handleAction={handleSendLink}
         />
 
         <div className={style.mergeman}>
           <TextField
-            autoFocus
             label="Password"
-            hiddenLabel
             value={password}
             type="password"
             onChange={handlePasswordChange}
-            sx={{
-              ...getTextFieldStyles(buttonWidth),
-              fontFamily: "Poppins",
-              fontSize: "5px",
-              minWidth: "210px",
-            }}
-            className={style.weg}
-            InputLabelProps={{
-              sx: {
-                fontFamily: "Poppins",
-                fontSize: "16px",
-              },
-            }}
-            InputProps={{
-              sx: {
-                fontFamily: "Poppins",
-                fontSize: "16px",
-              },
-            }}
-            onKeyPress={(e) => {
-              if (e.key === "Enter") {
-                handleSendLink();
-              }
-            }}
+            buttonWidth={buttonWidth}
+            handleAction={handleSendLink}
           />
         </div>
-
         <Button
           onClick={handleSendLink}
           // style={{ ...styles.button, width: buttonWidth, minWidth: "210px" }}
