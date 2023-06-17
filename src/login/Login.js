@@ -1,5 +1,5 @@
 import React, { useEffect, Fragment } from "react";
-import { ReactComponent as BackGround } from "../asser/background.svg";
+import { ReactComponent as BackGround } from "../assets/background.svg";
 import LoginBox from "./Box";
 import styles from "./Box.module.css";
 import LoadingPage from "../Loading/Loading";

@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Fragment } from "react";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
-import Button from "../Button/Button";
+import Button from "../components/Button/Button.component";
 import { getTextFieldStyles } from "./TextFelStyle";
 import style from "./Box.module.css";
 import style2 from "../Loading/Loading.module.css";
@@ -10,7 +10,6 @@ import apis from "../apis/auth";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-
 
 export default function Box() {
   const navigate = useNavigate();
@@ -65,34 +64,6 @@ export default function Box() {
     helperText: `Email sent successfully to ${email}`,
   };
 
-  const styles = {
-    button: {
-      fontFamily: "Poppins",
-      fontStyle: "normal",
-      fontWeight: 400,
-      fontSize: "12px",
-      lineHeight: "16px",
-      backgroundColor: "#E0786C",
-      color: "#FFFFFF",
-      width: "55%",
-      height: "32px",
-      borderRadius: "12px",
-      marginTop: "20px",
-      textTransform: "none",
-      border: "none",
-      "&:hover": {
-        backgroundColor: "#E0786C",
-        color: "#FFFFFF",
-      },
-    },
-    entergame: {
-      alignItems: "flex-start",
-      display: "flex",
-      flexDirection: "column",
-      width: "55%",
-    },
-  };
-
   async function handleSignup() {
     let emailWithoutSpace = email.replace(/\s/g, "");
     if (!ValidEmail(emailWithoutSpace)) {
@@ -143,7 +114,7 @@ export default function Box() {
   const buttonWidth = screenWidth <= 630 ? "90%" : "55%";
 
   return (
-    <>
+    <Fragment>
       {isLoading ? (
         <div className={style.inner_divv}>
           <div className={style2["loading-spinner"]} />
@@ -255,12 +226,14 @@ export default function Box() {
 
           <Button
             onClick={handleSignup}
-            style={{ ...styles.button, width: buttonWidth, minWidth: "210px" }}
+            // style={{ ...styles.button, width: buttonWidth, minWidth: "210px" }}
+            width={buttonWidth}
+            buttonType="auth"
           >
             Sign Up
           </Button>
         </div>
       )}
-    </>
+    </Fragment>
   );
 }
