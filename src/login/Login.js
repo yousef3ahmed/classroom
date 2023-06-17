@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Fragment } from "react";
 import { ReactComponent as BackGround } from "../asser/background.svg";
 import LoginBox from "./Box";
 import styles from "./Box.module.css";
@@ -19,9 +19,8 @@ function Login() {
   return isLoding ? (
     <LoadingPage />
   ) : (
-    <>
-      <div className={styles.hide}>
-      </div>
+    <Fragment>
+      <div className={styles.hide}></div>
       <div className={styles.body_divv}>
         <div className={styles.colorfully_div}>
           <div className={styles.contain}>
@@ -41,7 +40,7 @@ function Login() {
           <BackGround className={styles.Group41} />
         </div>
       </div>
-    </>
+    </Fragment>
   );
 }
 
