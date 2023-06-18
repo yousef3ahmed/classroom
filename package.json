@@ -7,6 +7,7 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.13.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -17,7 +18,9 @@
     "react-router-dom": "^6.13.0",
     "react-scripts": "5.0.1",
     "react-toastify": "^9.1.3",
-    "web-vitals": "^2.1.4"
+    "sass": "^1.63.4",
+    "web-vitals": "^2.1.4",
+    "yarn": "^1.22.19"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -44,5 +47,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/yousef3ahmed/classroom.git",
+  "author": "Ahmed Sakr <80043395+Ahmed-Mohmed-Sakr@users.noreply.github.com>",
+  "license": "MIT"
 }

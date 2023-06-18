@@ -1,13 +1,12 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { useEffect } from "react";
-import TextField from "@mui/material/TextField";
+import TextField from "../../components/TextField/TestField.component.jsx";
 import InputAdornment from "@mui/material/InputAdornment";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
-import Button from "../Button/Button";
-import { getTextFieldStyles } from "./TextFelStyle";
+import Button from "../../components/Button/Button.component.jsx";
 import style from "./Box.module.css";
-import style2 from "../Loading/Loading.module.css";
-import apis from "../apis/auth";
+import style2 from "../../components/Loading/Loading.module.css";
+import apis from "../../apis/auth";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 
@@ -57,34 +56,6 @@ export default function Box() {
     helperText: `Email sent successfully to ${email}`,
   };
 
-  const styles = {
-    button: {
-      fontFamily: "Poppins",
-      fontStyle: "normal",
-      fontWeight: 400,
-      fontSize: "12px",
-      lineHeight: "16px",
-      backgroundColor: "#E0786C",
-      color: "#FFFFFF",
-      width: "55%",
-      height: "32px",
-      borderRadius: "12px",
-      marginTop: "20px",
-      textTransform: "none",
-      border: "none",
-      "&:hover": {
-        backgroundColor: "#E0786C",
-        color: "#FFFFFF",
-      },
-    },
-    entergame: {
-      alignItems: "flex-start",
-      display: "flex",
-      flexDirection: "column",
-      width: "55%",
-    },
-  };
-
   async function handleSendLink() {
     let emailWithoutSpace = email.replace(/\s/g, "");
     if (!ValidEmail(emailWithoutSpace)) {
@@ -108,14 +79,14 @@ export default function Box() {
       })
       .catch((err) => {
         toast.error(
-            <div>
-              some error accour when we processing your data <br />
-              try again
-            </div>,
-            {
-              autoClose: 5000,
-            }
-          );
+          <div>
+            some error accour when we processing your data <br />
+            try again
+          </div>,
+          {
+            autoClose: 5000,
+          }
+        );
         setIsLoding(false);
         console.log(err.message);
       });
@@ -127,82 +98,36 @@ export default function Box() {
       <div className={style2["loading-spinner"]} />
     </div>
   ) : (
-    <>
+    <Fragment>
       <div className={style.inner_divv}>
         <h2>Log In</h2>
-
         <TextField
           autoFocus
           label="Email"
           hiddenLabel
           value={email}
+          buttonWidth={buttonWidth}
           onChange={handleEmailChange}
           {...(isValidEmail ? {} : ErrorProps)}
           {...(sendEmail ? successProps : {})}
-          sx={{
-            ...getTextFieldStyles(buttonWidth),
-            fontFamily: "Poppins",
-            fontSize: "5px",
-            minWidth: "210px",
-          }}
-          className={style.weg}
-          InputLabelProps={{
-            sx: {
-              fontFamily: "Poppins",
-              fontSize: "16px",
-            },
-          }}
-          InputProps={{
-            sx: {
-              fontFamily: "Poppins",
-              fontSize: "16px",
-            },
-          }}
-          onKeyPress={(e) => {
-            if (e.key === "Enter") {
-              handleSendLink();
-            }
-          }}
+          handleAction={handleSendLink}
         />
 
         <div className={style.mergeman}>
           <TextField
-            autoFocus
             label="Password"
-            hiddenLabel
             value={password}
             type="password"
             onChange={handlePasswordChange}
-            sx={{
-              ...getTextFieldStyles(buttonWidth),
-              fontFamily: "Poppins",
-              fontSize: "5px",
-              minWidth: "210px",
-            }}
-            className={style.weg}
-            InputLabelProps={{
-              sx: {
-                fontFamily: "Poppins",
-                fontSize: "16px",
-              },
-            }}
-            InputProps={{
-              sx: {
-                fontFamily: "Poppins",
-                fontSize: "16px",
-              },
-            }}
-            onKeyPress={(e) => {
-              if (e.key === "Enter") {
-                handleSendLink();
-              }
-            }}
+            buttonWidth={buttonWidth}
+            handleAction={handleSendLink}
           />
         </div>
-
         <Button
           onClick={handleSendLink}
-          style={{ ...styles.button, width: buttonWidth, minWidth: "210px" }}
+          // style={{ ...styles.button, width: buttonWidth, minWidth: "210px" }}
+          width={buttonWidth}
+          buttonType="auth"
         >
           Login
         </Button>
@@ -214,6 +139,6 @@ export default function Box() {
           </Link>
         </p>
       </div>
-    </>
+    </Fragment>
   );
 }

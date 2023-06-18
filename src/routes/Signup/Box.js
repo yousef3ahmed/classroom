@@ -1,16 +1,14 @@
-import React, { useEffect } from "react";
-import TextField from "@mui/material/TextField";
+import React, { useEffect, Fragment } from "react";
+import TextField from "../../components/TextField/TestField.component.jsx";
 import InputAdornment from "@mui/material/InputAdornment";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
-import Button from "../Button/Button";
-import { getTextFieldStyles } from "./TextFelStyle";
+import Button from "../../components/Button/Button.component.jsx";
 import style from "./Box.module.css";
-import style2 from "../Loading/Loading.module.css";
-import apis from "../apis/auth";
+import style2 from "../../components/Loading/Loading.module.css";
+import apis from "../../apis/auth";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-
 
 export default function Box() {
   const navigate = useNavigate();
@@ -65,34 +63,6 @@ export default function Box() {
     helperText: `Email sent successfully to ${email}`,
   };
 
-  const styles = {
-    button: {
-      fontFamily: "Poppins",
-      fontStyle: "normal",
-      fontWeight: 400,
-      fontSize: "12px",
-      lineHeight: "16px",
-      backgroundColor: "#E0786C",
-      color: "#FFFFFF",
-      width: "55%",
-      height: "32px",
-      borderRadius: "12px",
-      marginTop: "20px",
-      textTransform: "none",
-      border: "none",
-      "&:hover": {
-        backgroundColor: "#E0786C",
-        color: "#FFFFFF",
-      },
-    },
-    entergame: {
-      alignItems: "flex-start",
-      display: "flex",
-      flexDirection: "column",
-      width: "55%",
-    },
-  };
-
   async function handleSignup() {
     let emailWithoutSpace = email.replace(/\s/g, "");
     if (!ValidEmail(emailWithoutSpace)) {
@@ -143,7 +113,7 @@ export default function Box() {
   const buttonWidth = screenWidth <= 630 ? "90%" : "55%";
 
   return (
-    <>
+    <Fragment>
       {isLoading ? (
         <div className={style.inner_divv}>
           <div className={style2["loading-spinner"]} />
@@ -158,30 +128,8 @@ export default function Box() {
             hiddenLabel
             value={username}
             onChange={handleUsernameChange}
-            sx={{
-              ...getTextFieldStyles(buttonWidth),
-              fontFamily: "Poppins",
-              fontSize: "5px",
-              minWidth: "210px",
-            }}
-            className={style.weg}
-            InputLabelProps={{
-              sx: {
-                fontFamily: "Poppins",
-                fontSize: "16px",
-              },
-            }}
-            InputProps={{
-              sx: {
-                fontFamily: "Poppins",
-                fontSize: "16px",
-              },
-            }}
-            onKeyPress={(e) => {
-              if (e.key === "Enter") {
-                handleSignup();
-              }
-            }}
+            handleAction={handleSignup}
+            buttonWidth={buttonWidth}
           />
 
           <div className={style.mergeman}>
@@ -190,32 +138,10 @@ export default function Box() {
               hiddenLabel
               value={email}
               onChange={handleEmailChange}
+              buttonWidth={buttonWidth}
+              handleAction={handleSignup}
               {...(isValidEmail ? {} : ErrorProps)}
               {...(sendEmail ? successProps : {})}
-              sx={{
-                ...getTextFieldStyles(buttonWidth),
-                fontFamily: "Poppins",
-                fontSize: "5px",
-                minWidth: "210px",
-              }}
-              className={style.weg}
-              InputLabelProps={{
-                sx: {
-                  fontFamily: "Poppins",
-                  fontSize: "16px",
-                },
-              }}
-              InputProps={{
-                sx: {
-                  fontFamily: "Poppins",
-                  fontSize: "16px",
-                },
-              }}
-              onKeyPress={(e) => {
-                if (e.key === "Enter") {
-                  handleSignup();
-                }
-              }}
             />
           </div>
 
@@ -226,41 +152,21 @@ export default function Box() {
               value={password}
               type="password"
               onChange={handlePasswordChange}
-              sx={{
-                ...getTextFieldStyles(buttonWidth),
-                fontFamily: "Poppins",
-                fontSize: "5px",
-                minWidth: "210px",
-              }}
-              className={style.weg}
-              InputLabelProps={{
-                sx: {
-                  fontFamily: "Poppins",
-                  fontSize: "16px",
-                },
-              }}
-              InputProps={{
-                sx: {
-                  fontFamily: "Poppins",
-                  fontSize: "16px",
-                },
-              }}
-              onKeyPress={(e) => {
-                if (e.key === "Enter") {
-                  handleSignup();
-                }
-              }}
+              buttonWidth={buttonWidth}
+              handleAction={handleSignup}
             />
           </div>
 
           <Button
             onClick={handleSignup}
-            style={{ ...styles.button, width: buttonWidth, minWidth: "210px" }}
+            // style={{ ...styles.button, width: buttonWidth, minWidth: "210px" }}
+            width={buttonWidth}
+            buttonType="auth"
           >
             Sign Up
           </Button>
         </div>
       )}
-    </>
+    </Fragment>
   );
 }

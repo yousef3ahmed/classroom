@@ -1,17 +1,16 @@
-import React, { useEffect } from "react";
-import { ReactComponent as BackGround } from "../asser/background.svg";
+import React, { useEffect, Fragment } from "react";
+import { ReactComponent as BackGround } from "../../assets/background.svg";
 import LoginBox from "./Box";
 import styles from "./Box.module.css";
-import LoadingPage from "../Loading/Loading";
+import LoadingPage from "../../components/Loading/Loading";
 import { useNavigate } from "react-router-dom";
-
-function Signup() {
+function Login() {
   const [isLoding, setIsLoding] = React.useState(true);
   const navigate = useNavigate();
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
     if (token) {
-      navigate("/");
+      navigate("/home");
     } else {
       setIsLoding(false);
     }
@@ -20,7 +19,7 @@ function Signup() {
   return isLoding ? (
     <LoadingPage />
   ) : (
-    <>
+    <Fragment>
       <div className={styles.hide}></div>
       <div className={styles.body_divv}>
         <div className={styles.colorfully_div}>
@@ -41,8 +40,8 @@ function Signup() {
           <BackGround className={styles.Group41} />
         </div>
       </div>
-    </>
+    </Fragment>
   );
 }
 
-export default Signup;
+export default Login;

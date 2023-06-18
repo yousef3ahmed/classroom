@@ -1,0 +1,10 @@
+.weg {
+  font-family: "Poppins";
+}
+
+@media (max-width: 630px) {
+  .weg {
+    width: 90%;
+    font-size: 16px !important;
+  }
+}
