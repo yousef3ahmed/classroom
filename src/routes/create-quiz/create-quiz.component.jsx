@@ -25,6 +25,10 @@ const CreateQuiz = () => {
   const { questions, addQuestion, removeQuestion } =
     useContext(CreateQuizContext);
 
+  const handelRemoveQuestion = () => {
+    removeQuestion(quizField);
+  };
+
   const resetQuizFields = () => {
     setQuizField(defaultQuizField);
   };
@@ -33,6 +37,11 @@ const CreateQuiz = () => {
     const { name, value } = event.target;
 
     setQuizField({ ...quizField, [name]: value });
+  };
+
+  const handleDoubleClick = (event) => {
+    const { name } = event.target;
+    quizField["correctAns"] = name;
   };
 
   const handleSubmit = async (event) => {
@@ -72,6 +81,7 @@ const CreateQuiz = () => {
                 type="text"
                 required
                 onChange={handleChange}
+                onDoubleClick={handleDoubleClick}
                 name="option1"
                 value={option1}
               />
@@ -103,7 +113,9 @@ const CreateQuiz = () => {
           </div>
         </div>
         <button>save question</button>
-        <button type="button">remove question</button>
+        <button type="button" onClick={handelRemoveQuestion}>
+          remove question
+        </button>
       </form>
     </div>
   );
