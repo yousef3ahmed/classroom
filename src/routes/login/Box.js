@@ -9,8 +9,11 @@ import style2 from "../../components/Loading/Loading.module.css";
 import apis from "../../apis/auth";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 export default function Box() {
+  const navigate = useNavigate();
   const [isValidEmail, setValidEmail] = React.useState(true);
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -75,7 +78,9 @@ export default function Box() {
       .login(data)
       .then((res) => {
         console.log(res.data.token);
+        localStorage.setItem("token", res.data.token);
         setIsLoding(false);
+        navigate(`/home`);
       })
       .catch((err) => {
         toast.error(
