@@ -2,9 +2,11 @@ import "./question-input.styles.css";
 
 const QuestionInput = ({ label, ...otherProps }) => {
   return (
-    <div>
-      <input {...otherProps} placeholder={label} />
-    </div>
+    <input
+      className="input-field-container"
+      {...otherProps}
+      placeholder={label}
+    />
   );
 };
 
