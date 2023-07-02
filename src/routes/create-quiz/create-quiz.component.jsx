@@ -52,71 +52,94 @@ const CreateQuiz = () => {
     resetQuizFields();
   };
   return (
-    <div>
-      {/* <div>
-          <span>qution in side</span>
-  </div>*/}
+    <div className="container-for-quiz-page">
+      <div className="create-quiz-container">
+        <div className="create-quiz-sidebar">
+          <span>side bare will be here</span>
+        </div>
 
-      <div>
-        <h2>MY first Quiz</h2>
-        <button> save quiz </button>
-      </div>
-      <form onSubmit={handleSubmit}>
-        <QuestionArea
-          label="enter your question"
-          type="text"
-          required
-          onChange={handleChange}
-          name="question"
-          value={question}
-        />
-
-        <div>
-          <span>To mark an option as correct, simply double-click on it.</span>
-
-          <div>
-            <div>
-              <QuestionInput
-                label="option 1"
+        <div className="create-quiz-main-area">
+          <div className="main-area-header">
+            <h2 className="quiz-name">Create Quiz</h2>
+            <button className="quiz-buttons"> create quiz </button>
+          </div>
+          <div className="create-qution-card">
+            <div className="main-area-header">
+              <h2 className="quiz-question">Question</h2>
+            </div>
+            <form onSubmit={handleSubmit}>
+              <QuestionArea
+                label="Type your question here"
                 type="text"
                 required
                 onChange={handleChange}
-                onDoubleClick={handleDoubleClick}
-                name="option1"
-                value={option1}
+                name="question"
+                value={question}
               />
-              <QuestionInput
-                label="option 2"
-                type="text"
-                required
-                onChange={handleChange}
-                name="option2"
-                value={option2}
-              />
-            </div>
-            <div>
-              <QuestionInput
-                label="option 3"
-                type="text"
-                onChange={handleChange}
-                name="option3"
-                value={option3}
-              />
-              <QuestionInput
-                label="option 4"
-                type="text"
-                onChange={handleChange}
-                name="option4"
-                value={option4}
-              />
-            </div>
+
+              <div>
+                <span className="create-quiz-hint-text">
+                  To mark an option as correct, simply double-click on it.
+                </span>
+
+                <div className="answer-options">
+                  <div className="answer-option">
+                    <QuestionInput
+                      label="Answer A"
+                      type="text"
+                      required
+                      onChange={handleChange}
+                      style={{ backgroundColor: "#f5f5f5" }}
+                      onDoubleClick={handleDoubleClick}
+                      name="option1"
+                      value={option1}
+                    />
+                  </div>
+                  <div className="answer-option">
+                    <QuestionInput
+                      label="Answer B"
+                      type="text"
+                      required
+                      onChange={handleChange}
+                      style={{ backgroundColor: "#f8dabb" }}
+                      onDoubleClick={handleDoubleClick}
+                      name="option2"
+                      value={option2}
+                    />
+                  </div>
+
+                  <div className="answer-option">
+                    <QuestionInput
+                      label="Answer C (optional)"
+                      type="text"
+                      onChange={handleChange}
+                      style={{ backgroundColor: "#fdfcdf" }}
+                      onDoubleClick={handleDoubleClick}
+                      name="option3"
+                      value={option3}
+                    />
+                  </div>
+                  <div className="answer-option">
+                    <QuestionInput
+                      label="Answer D (optional)"
+                      type="text"
+                      onChange={handleChange}
+                      style={{ backgroundColor: "#c4d6e8" }}
+                      onDoubleClick={handleDoubleClick}
+                      name="option4"
+                      value={option4}
+                    />
+                  </div>
+                </div>
+              </div>
+              <button>save question</button>
+              <button type="button" onClick={handelRemoveQuestion}>
+                remove question
+              </button>
+            </form>
           </div>
         </div>
-        <button>save question</button>
-        <button type="button" onClick={handelRemoveQuestion}>
-          remove question
-        </button>
-      </form>
+      </div>
     </div>
   );
 };

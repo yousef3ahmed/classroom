@@ -2,8 +2,8 @@ import "./quetion-area.styles.css";
 
 const QuestionArea = ({ label, ...otherProps }) => {
   return (
-    <div>
-      <textarea {...otherProps} placeholder={label} />
+    <div className="textarea-container">
+      <textarea className="question-area" {...otherProps} placeholder={label} />
     </div>
   );
 };
