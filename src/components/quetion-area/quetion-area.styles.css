@@ -23,5 +23,18 @@
 @media only screen and (max-width: 768px) {
   .question-area {
     height: 80px;
+    font-size: 21px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .question-area {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .question-area {
+    font-size: 14px;
   }
 }

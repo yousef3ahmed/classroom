@@ -61,7 +61,7 @@ const CreateQuiz = () => {
         <div className="create-quiz-main-area">
           <div className="main-area-header">
             <h2 className="quiz-name">Create Quiz</h2>
-            <button className="quiz-buttons"> create quiz </button>
+            <button className="create-quiz-buttons">Create</button>
           </div>
           <div className="create-qution-card">
             <div className="main-area-header">
@@ -77,65 +77,70 @@ const CreateQuiz = () => {
                 value={question}
               />
 
-              <div>
-                <span className="create-quiz-hint-text">
-                  To mark an option as correct, simply double-click on it.
-                </span>
+              <span className="create-quiz-hint-text">
+                To mark an option as correct, simply double-click on it.
+              </span>
 
-                <div className="answer-options">
-                  <div className="answer-option">
-                    <QuestionInput
-                      label="Answer A"
-                      type="text"
-                      required
-                      onChange={handleChange}
-                      style={{ backgroundColor: "#f5f5f5" }}
-                      onDoubleClick={handleDoubleClick}
-                      name="option1"
-                      value={option1}
-                    />
-                  </div>
-                  <div className="answer-option">
-                    <QuestionInput
-                      label="Answer B"
-                      type="text"
-                      required
-                      onChange={handleChange}
-                      style={{ backgroundColor: "#f8dabb" }}
-                      onDoubleClick={handleDoubleClick}
-                      name="option2"
-                      value={option2}
-                    />
-                  </div>
+              <div className="answer-options">
+                <div className="answer-option">
+                  <QuestionInput
+                    label="Answer A"
+                    type="text"
+                    required
+                    onChange={handleChange}
+                    style={{ backgroundColor: "#f5f5f5" }}
+                    onDoubleClick={handleDoubleClick}
+                    name="option1"
+                    value={option1}
+                  />
+                </div>
+                <div className="answer-option">
+                  <QuestionInput
+                    label="Answer B"
+                    type="text"
+                    required
+                    onChange={handleChange}
+                    style={{ backgroundColor: "#f8dabb" }}
+                    onDoubleClick={handleDoubleClick}
+                    name="option2"
+                    value={option2}
+                  />
+                </div>
 
-                  <div className="answer-option">
-                    <QuestionInput
-                      label="Answer C (optional)"
-                      type="text"
-                      onChange={handleChange}
-                      style={{ backgroundColor: "#fdfcdf" }}
-                      onDoubleClick={handleDoubleClick}
-                      name="option3"
-                      value={option3}
-                    />
-                  </div>
-                  <div className="answer-option">
-                    <QuestionInput
-                      label="Answer D (optional)"
-                      type="text"
-                      onChange={handleChange}
-                      style={{ backgroundColor: "#c4d6e8" }}
-                      onDoubleClick={handleDoubleClick}
-                      name="option4"
-                      value={option4}
-                    />
-                  </div>
+                <div className="answer-option">
+                  <QuestionInput
+                    label="Answer C (optional)"
+                    type="text"
+                    onChange={handleChange}
+                    style={{ backgroundColor: "#fdfcdf" }}
+                    onDoubleClick={handleDoubleClick}
+                    name="option3"
+                    value={option3}
+                  />
+                </div>
+                <div className="answer-option">
+                  <QuestionInput
+                    label="Answer D (optional)"
+                    type="text"
+                    onChange={handleChange}
+                    style={{ backgroundColor: "#c4d6e8" }}
+                    onDoubleClick={handleDoubleClick}
+                    name="option4"
+                    value={option4}
+                  />
                 </div>
               </div>
-              <button>save question</button>
-              <button type="button" onClick={handelRemoveQuestion}>
-                remove question
-              </button>
+
+              <div className="quiz-button-container">
+                <button className="quiz-save-button">Save</button>
+                <button
+                  className="quiz-remove-button"
+                  type="button"
+                  onClick={handelRemoveQuestion}
+                >
+                  Remove
+                </button>
+              </div>
             </form>
           </div>
         </div>
