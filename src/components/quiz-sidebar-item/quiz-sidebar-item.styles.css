@@ -1,0 +1,125 @@
+.blueprint-container {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  min-width: 180px;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.blueprint-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.blueprint-container span {
+  font-family: "Poppins";
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(63, 63, 63, 0.7);
+}
+
+.blueprint-container-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: rgba(224, 120, 108, 0.7);
+  border-radius: 8px;
+  padding: 5px;
+}
+
+.blueprint-container-header span {
+  color: rgba(253, 252, 245, 0.7);
+  font-size: 12px;
+}
+
+.blueprint-container-question {
+  width: 100%;
+}
+
+.blueprint-container-question span {
+  font-weight: 600;
+}
+
+.blueprint-container-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+  width: 100%;
+}
+
+.blueprint-container-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(245, 245, 245, 0.7);
+  border-radius: 8px;
+  padding: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  opacity: 0.8;
+}
+
+.blueprint-container-option:hover {
+  background-color: rgba(220, 220, 220, 0.7);
+}
+
+.blueprint-container-option.selected {
+  background-color: rgba(224, 120, 108, 0.7);
+}
+
+.blueprint-container-option:nth-child(2n) {
+  background-color: rgba(248, 218, 187, 0.7);
+}
+
+.blueprint-container-option:nth-child(3) {
+  background-color: rgba(253, 252, 223, 0.7);
+}
+
+.blueprint-container-option:nth-child(4) {
+  background-color: rgba(196, 214, 232, 0.7);
+}
+
+.blueprint-container.small {
+  width: 100%;
+  margin: 12px 0;
+  padding: 5px;
+}
+
+.blueprint-container-header.small span {
+  font-size: 12px;
+}
+
+.blueprint-container-question.small span {
+  font-size: 12px;
+}
+
+.blueprint-container-option.small {
+  padding: 3px;
+}
+
+@media only screen and (min-width: 768px) {
+  /* tablets and up */
+  .blueprint-container {
+    padding: 12px;
+  }
+
+  .blueprint-container-header span {
+    font-size: 12px;
+  }
+
+  .blueprint-container-question span {
+    font-size: 10px;
+  }
+
+  .blueprint-container-option {
+    padding: 10px;
+    font-size: 10px;
+  }
+}

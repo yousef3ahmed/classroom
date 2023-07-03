@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+}
+
+.container-for-quiz-page {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  background-color: #1d3e5a;
+}
+
+.create-quiz-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 30px;
+  width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  .create-quiz-container {
+    flex-direction: row;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .create-quiz-container {
+    flex-direction: row;
+  }
+}

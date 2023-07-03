@@ -6,11 +6,15 @@ import reportWebVitals from "./reportWebVitals";
 import Login from "../src/routes/login/Login";
 import { toast, ToastContainer } from "react-toastify";
 
+import { CreateQuizProvider } from "./context/create-quiz.context";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <ToastContainer position="top-center" autoClose={750} />
-    <App />
+    <CreateQuizProvider>
+      <App />
+    </CreateQuizProvider>
     {/* <Login/> */}
   </React.StrictMode>
 );

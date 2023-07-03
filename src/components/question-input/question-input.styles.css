@@ -1,0 +1,24 @@
+.input-field-container {
+  display: block;
+  width: 98%;
+  padding: 10px;
+  font-size: 21px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-family: "Poppins";
+  color: #1d242a;
+  /* background-color: #c4d6e8; */
+}
+
+.input-field-container:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px #007bff;
+}
+
+@media only screen and (max-width: 768px) {
+  .input-field-container {
+    font-size: 18px;
+  }
+}
