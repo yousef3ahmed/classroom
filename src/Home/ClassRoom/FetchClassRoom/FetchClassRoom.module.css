@@ -1,0 +1,43 @@
+.body {
+    background-color: #1a3852;
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    padding-top: 80px;
+    padding-bottom: 24px;
+  }
+  
+  .container {
+    background-color: #1a3852;
+    width: 89%;
+    margin: auto;
+    height: 100%;
+  }
+  
+  .gameContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    margin-top: 32px;
+  }
+  
+  .header {
+    font-family: Poppins;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 48px;
+    line-height: 100%;
+    text-align: left;
+    vertical-align: top;
+    letter-spacing: -0.02em;
+    color: #fdfcdf;
+    margin-top: 16px;
+  }
+  
+  @media screen and (max-width: 767px) {
+    .container {
+      width: 83%;
+    }
+  }
+  

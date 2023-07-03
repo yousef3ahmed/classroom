@@ -1,0 +1,70 @@
+.container {
+    width: 100%;
+    box-sizing: border-box;
+    margin: auto;
+    margin-top: 24px;
+    margin-bottom: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .header {
+    font-family: Poppins;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 48px;
+    line-height: 100%;
+    text-align: left;
+    vertical-align: top;
+    letter-spacing: -0.02em;
+    color: #fdfcdf;
+  }
+  
+  .emptyButton {
+    color: #e0786c;
+    margin-right: 16px;
+    background-color: transparent;
+  }
+  
+  .fillButton {
+    color: #fdfcdf;
+    background-color: #e0786c;
+  }
+  
+  .fillButton,
+  .emptyButton {
+    font-family: "Poppins";
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 32px;
+    text-align: center;
+    letter-spacing: -0.02em;
+    width: 217.5px;
+    height: fit-content;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: 286px;
+    border-radius: 12px;
+    box-sizing: border-box;
+    border: #e0786c 1px solid;
+  }
+  
+  @media screen and (max-width: 767px) {
+    .container {
+      flex-direction: column-reverse;
+      gap: 16px;
+      align-items: flex-start;
+    }
+  
+    .fillButton {
+      width: 100%;
+    }
+  }
+  
+  @media screen and (max-width: 319px) {
+    .container {
+      align-items: center;
+    }
+  }
+  
