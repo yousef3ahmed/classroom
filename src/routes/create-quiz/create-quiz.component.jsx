@@ -1,9 +1,9 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import { v4 } from "uuid";
 
 import { CreateQuizContext } from "../../context/create-quiz.context";
-import QuestionInput from "../../components/question-input/question-input.component";
-import QuestionArea from "../../components/quetion-area/quetion-area.component";
+import CreateQuizCard from "../../components/create-quiz-card/create-quiz-card.component";
+import CreateQuizSideBar from "../../components/create-quiz-sideBar/create-quiz-sideBar.component";
 
 import "./create-quiz.styles.css";
 
@@ -19,18 +19,32 @@ const defaultQuizField = {
 
 const CreateQuiz = () => {
   const [quizField, setQuizField] = useState(defaultQuizField);
-  const { question, option1, option2, option3, option4, correctAns } =
-    quizField;
-
-  const { questions, addQuestion, removeQuestion } =
+  const formRef = useRef(null);
+  const { addQuestion, removeQuestion, selectedQuestion, setSelectedQuestion } =
     useContext(CreateQuizContext);
 
-  const handelRemoveQuestion = () => {
-    removeQuestion(quizField);
-  };
+  useEffect(() => {
+    quizField["id"] = selectedQuestion.id;
+    quizField["question"] = selectedQuestion.question;
+    quizField["option1"] = selectedQuestion.option1;
+    quizField["option2"] = selectedQuestion.option2;
+    quizField["option3"] = selectedQuestion.option3;
+    quizField["option4"] = selectedQuestion.option4;
+    quizField["correctAns"] = selectedQuestion.correctAns;
+
+    setQuizField({ ...quizField });
+  }, [selectedQuestion]);
 
   const resetQuizFields = () => {
-    setQuizField(defaultQuizField);
+    setQuizField({ ...defaultQuizField });
+  };
+
+  const handelRemoveQuestion = () => {
+    if (quizField.id !== "") {
+      removeQuestion(quizField);
+      resetQuizFields();
+      setSelectedQuestion({ ...defaultQuizField });
+    }
   };
 
   const handleChange = (event) => {
@@ -46,104 +60,48 @@ const CreateQuiz = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    quizField["id"] = v4();
+    console.log(quizField);
+    if (quizField["id"] === "") {
+      quizField["id"] = v4();
 
-    addQuestion(quizField);
-    resetQuizFields();
+      addQuestion(quizField);
+      resetQuizFields();
+      setSelectedQuestion({ ...defaultQuizField });
+      addQuestion(defaultQuizField);
+    } else {
+      if (
+        selectedQuestion.id === quizField.id &&
+        selectedQuestion.question === quizField.question &&
+        selectedQuestion.option1 === quizField.option1 &&
+        selectedQuestion.option2 === quizField.option2 &&
+        selectedQuestion.option3 === quizField.option3 &&
+        selectedQuestion.option4 === quizField.option4 &&
+        selectedQuestion.correctAns === quizField.correctAns
+      ) {
+        setSelectedQuestion({ ...defaultQuizField });
+      } else {
+        addQuestion(quizField);
+        setSelectedQuestion({ ...quizField });
+      }
+    }
   };
+
+  const handleAddQution = async () => {
+    await formRef.current.click();
+  };
+
   return (
     <div className="container-for-quiz-page">
       <div className="create-quiz-container">
-        <div className="create-quiz-sidebar">
-          <span>side bare will be here</span>
-        </div>
-
-        <div className="create-quiz-main-area">
-          <div className="main-area-header">
-            <h2 className="quiz-name">Create Quiz</h2>
-            <button className="create-quiz-buttons">Create</button>
-          </div>
-          <div className="create-qution-card">
-            <div className="main-area-header">
-              <h2 className="quiz-question">Question</h2>
-            </div>
-            <form onSubmit={handleSubmit}>
-              <QuestionArea
-                label="Type your question here"
-                type="text"
-                required
-                onChange={handleChange}
-                name="question"
-                value={question}
-              />
-
-              <span className="create-quiz-hint-text">
-                To mark an option as correct, simply double-click on it.
-              </span>
-
-              <div className="answer-options">
-                <div className="answer-option">
-                  <QuestionInput
-                    label="Answer A"
-                    type="text"
-                    required
-                    onChange={handleChange}
-                    style={{ backgroundColor: "#f5f5f5" }}
-                    onDoubleClick={handleDoubleClick}
-                    name="option1"
-                    value={option1}
-                  />
-                </div>
-                <div className="answer-option">
-                  <QuestionInput
-                    label="Answer B"
-                    type="text"
-                    required
-                    onChange={handleChange}
-                    style={{ backgroundColor: "#f8dabb" }}
-                    onDoubleClick={handleDoubleClick}
-                    name="option2"
-                    value={option2}
-                  />
-                </div>
-
-                <div className="answer-option">
-                  <QuestionInput
-                    label="Answer C (optional)"
-                    type="text"
-                    onChange={handleChange}
-                    style={{ backgroundColor: "#fdfcdf" }}
-                    onDoubleClick={handleDoubleClick}
-                    name="option3"
-                    value={option3}
-                  />
-                </div>
-                <div className="answer-option">
-                  <QuestionInput
-                    label="Answer D (optional)"
-                    type="text"
-                    onChange={handleChange}
-                    style={{ backgroundColor: "#c4d6e8" }}
-                    onDoubleClick={handleDoubleClick}
-                    name="option4"
-                    value={option4}
-                  />
-                </div>
-              </div>
-
-              <div className="quiz-button-container">
-                <button className="quiz-save-button">Save</button>
-                <button
-                  className="quiz-remove-button"
-                  type="button"
-                  onClick={handelRemoveQuestion}
-                >
-                  Remove
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
+        <CreateQuizSideBar handleAddQution={handleAddQution} />
+        <CreateQuizCard
+          handleSubmit={handleSubmit}
+          handleChange={handleChange}
+          handelRemoveQuestion={handelRemoveQuestion}
+          handleDoubleClick={handleDoubleClick}
+          formRef={formRef}
+          quizField={quizField}
+        />
       </div>
     </div>
   );

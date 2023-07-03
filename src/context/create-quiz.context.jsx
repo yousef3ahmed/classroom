@@ -11,6 +11,18 @@ const addQuizQuestion = (questions, quizQuestionToAdd) => {
     );
   }
 
+  if (questions && questions[questions.length - 1].id === "") {
+    questions[questions.length - 1].id = quizQuestionToAdd.id;
+    questions[questions.length - 1].question = quizQuestionToAdd.question;
+    questions[questions.length - 1].option1 = quizQuestionToAdd.option1;
+    questions[questions.length - 1].option2 = quizQuestionToAdd.option2;
+    questions[questions.length - 1].option3 = quizQuestionToAdd.option3;
+    questions[questions.length - 1].option4 = quizQuestionToAdd.option4;
+    questions[questions.length - 1].correctAns = quizQuestionToAdd.correctAns;
+
+    return [...questions];
+  }
+
   return [...questions, { ...quizQuestionToAdd }];
 };
 
@@ -20,18 +32,35 @@ const removeQuizQuestion = (questions, quizQuestiontToRemove) => {
   );
 };
 
+const defaultQuizField = {
+  id: "",
+  question: "",
+  option1: "",
+  option2: "",
+  option3: "",
+  option4: "",
+  correctAns: "",
+};
+
 // as the actual value you want to access
 export const CreateQuizContext = createContext({
   questions: [],
   addQuestion: () => null,
   removeQuestion: () => null,
+  selectedQuestion: {},
+  setSelectedQuestion: () => null,
 });
 
 export const CreateQuizProvider = ({ children }) => {
+  const [selectedQuestion, setSelectedQuestion] = useState(defaultQuizField);
   const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
-    console.log(questions);
+    if (questions.length === 0) {
+      setQuestions([{ ...defaultQuizField }]);
+    }
+
+    // console.log(questions);
   }, [questions]);
 
   const addQuestion = (quizQuestionToAdd) => {
@@ -42,7 +71,13 @@ export const CreateQuizProvider = ({ children }) => {
     setQuestions(removeQuizQuestion(questions, quizQuestiontToRemove));
   };
 
-  const value = { questions, addQuestion, removeQuestion };
+  const value = {
+    questions,
+    addQuestion,
+    removeQuestion,
+    selectedQuestion,
+    setSelectedQuestion,
+  };
 
   return (
     <CreateQuizContext.Provider value={value}>
