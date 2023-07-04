@@ -13,12 +13,15 @@ const TimerContainer = styled.div`
 
 const TimerIcon = styled(Icon)`
   padding: 1rem;
-  color: darkblue;
+  color: #e0786c;
 `;
 
 const TimerBar = styled(LinearProgress)`
   width: 100rem;
   border-radius: 10px;
+  .MuiLinearProgress-barColorPrimary {
+    background-color: #e0786c;
+  }
 `;
 
 const QuizTimer = ({
@@ -59,6 +62,7 @@ const QuizTimer = ({
       {hasIcon ? <TimerIcon {...iconProps}>{timerIcon}</TimerIcon> : null}
       <TimerBar
         variant="determinate"
+        color="primary"
         value={formatMillisToPercentage(progress)}
         {...timerProps}
       />
