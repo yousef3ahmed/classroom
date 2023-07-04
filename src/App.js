@@ -14,7 +14,7 @@ function App() {
     <Router>
       <Routes>
         {/* <Route path="/privacy-policy" element={<PrivacyPolicy />} /> */}
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Login />}   />
         <Route path="/signup" element={<Signup />} />
         {/* <Route path="/home" element={<Login />} /> */}
         <Route path="/home" element={<AdminHomeScreen />} />
