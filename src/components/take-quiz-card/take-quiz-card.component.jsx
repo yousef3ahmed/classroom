@@ -1,10 +1,21 @@
+import { useState, useEffect } from "react";
+
 import QuestionInput from "../question-input/question-input.component";
 import QuestionArea from "../quetion-area/quetion-area.component";
+import QuizTimer from "../Timer-component/Timer.component";
+import AccessAlarmIcon from "@material-ui/icons/AccessAlarm";
 
 import "./take-quiz-card.styles.css";
 
 const TakeQuizCard = ({ handleChooseAns, quizField, currentQuestionIndex }) => {
   const { question, option1, option2, option3, option4 } = quizField;
+
+  const [timerKey, setTimerKey] = useState(0);
+
+  useEffect(() => {
+    setTimerKey((prevKey) => prevKey + 1);
+  }, [currentQuestionIndex]);
+
   return (
     <div className="create-quiz-main-area">
       <div className="create-qution-card">
@@ -18,6 +29,14 @@ const TakeQuizCard = ({ handleChooseAns, quizField, currentQuestionIndex }) => {
             readOnly
             name="question"
             value={question}
+          />
+
+          <QuizTimer
+            key={timerKey}
+            hasIcon
+            timerIcon={<AccessAlarmIcon />}
+            initialTime={9000}
+            tickFrequency={1000}
           />
 
           <span className="create-quiz-hint-text">
