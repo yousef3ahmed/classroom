@@ -26,7 +26,6 @@ const TakeQuizCard = ({ handleChooseAns, quizField, currentQuestionIndex }) => {
           />
 
           <QuizTimer
-            key={currentQuestionIndex}
             hasIcon
             timerIcon={<AccessAlarmIcon />}
             initialTime={9000}

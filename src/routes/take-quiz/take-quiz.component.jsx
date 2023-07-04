@@ -47,11 +47,11 @@ const TakeQize = () => {
         ) : (
           quizQuestions[currentQuestionIndex] && (
             <TakeQuizCard
+              key={currentQuestionIndex}
               quizField={quizQuestions[currentQuestionIndex]}
               currentQuestionIndex={currentQuestionIndex}
               handleChooseAns={handleChooseAns}
             />
-            // {<h2>{quizQuestions[currentQuestionIndex].question}</h2>}
           )
         )}
       </div>
