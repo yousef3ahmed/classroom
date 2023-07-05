@@ -6,7 +6,7 @@ const QUIZ_DATA = [
     option2: "wow",
     option3: "lol",
     option4: "no",
-    correctAns: "option1",
+    correctAns: "",
   },
   {
     id: "1",
@@ -15,7 +15,7 @@ const QUIZ_DATA = [
     option2: "thanks",
     option3: "woww",
     option4: "thanks pro",
-    correctAns: "option1",
+    correctAns: "",
   },
   {
     id: "2",
@@ -24,7 +24,7 @@ const QUIZ_DATA = [
     option2: "nade",
     option3: "ali",
     option4: "zainb",
-    correctAns: "option1",
+    correctAns: "",
   },
 ];
 

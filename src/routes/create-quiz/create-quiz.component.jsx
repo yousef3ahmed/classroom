@@ -55,7 +55,7 @@ const CreateQuiz = () => {
 
   const handleDoubleClick = (event) => {
     const { name } = event.target;
-    quizField["correctAns"] = name;
+    setQuizField({ ...quizField, ["correctAns"]: name });
   };
 
   const handleSubmit = async (event) => {

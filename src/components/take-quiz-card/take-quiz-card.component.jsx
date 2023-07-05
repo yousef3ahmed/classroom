@@ -7,8 +7,14 @@ import AccessAlarmIcon from "@material-ui/icons/AccessAlarm";
 
 import "./take-quiz-card.styles.css";
 
-const TakeQuizCard = ({ handleChooseAns, quizField, currentQuestionIndex }) => {
-  const { question, option1, option2, option3, option4 } = quizField;
+const TakeQuizCard = ({
+  userAnswers,
+  handleChooseAns,
+  quizField,
+  currentQuestionIndex,
+}) => {
+  const { question, option1, option2, option3, option4, correctAns } =
+    quizField;
 
   return (
     <div className="create-quiz-main-area">
@@ -40,7 +46,11 @@ const TakeQuizCard = ({ handleChooseAns, quizField, currentQuestionIndex }) => {
             <div className="answer-option">
               <QuestionInput
                 type="text"
-                style={{ backgroundColor: "#f5f5f5" }}
+                style={
+                  userAnswers[currentQuestionIndex] === "option1"
+                    ? { backgroundColor: "green" }
+                    : { backgroundColor: "#f5f5f5" }
+                }
                 onClick={() => handleChooseAns(currentQuestionIndex, "option1")}
                 readOnly
                 name="option1"
@@ -50,7 +60,11 @@ const TakeQuizCard = ({ handleChooseAns, quizField, currentQuestionIndex }) => {
             <div className="answer-option">
               <QuestionInput
                 type="text"
-                style={{ backgroundColor: "#f8dabb" }}
+                style={
+                  userAnswers[currentQuestionIndex] === "option2"
+                    ? { backgroundColor: "green" }
+                    : { backgroundColor: "#f8dabb" }
+                }
                 onClick={() => handleChooseAns(currentQuestionIndex, "option2")}
                 readOnly
                 name="option2"
@@ -61,7 +75,11 @@ const TakeQuizCard = ({ handleChooseAns, quizField, currentQuestionIndex }) => {
             <div className="answer-option">
               <QuestionInput
                 type="text"
-                style={{ backgroundColor: "#fdfcdf" }}
+                style={
+                  userAnswers[currentQuestionIndex] === "option3"
+                    ? { backgroundColor: "green" }
+                    : { backgroundColor: "#fdfcdf" }
+                }
                 onClick={() => handleChooseAns(currentQuestionIndex, "option3")}
                 readOnly
                 name="option3"
@@ -71,7 +89,11 @@ const TakeQuizCard = ({ handleChooseAns, quizField, currentQuestionIndex }) => {
             <div className="answer-option">
               <QuestionInput
                 type="text"
-                style={{ backgroundColor: "#c4d6e8" }}
+                style={
+                  userAnswers[currentQuestionIndex] === "option4"
+                    ? { backgroundColor: "green" }
+                    : { backgroundColor: "#c4d6e8" }
+                }
                 onClick={() => handleChooseAns(currentQuestionIndex, "option4")}
                 readOnly
                 name="option4"
