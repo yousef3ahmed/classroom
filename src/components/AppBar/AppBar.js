@@ -44,7 +44,7 @@ function App() {
       cursor: "pointer",
       fontFamily: "Poppins",
       fontWeight: "600",
-      fontSize: "20px",
+      fontSize: "30px",
       color: "#F8DABB",
     },
     verticalLine: {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, Fragment } from "react";
 import AppBar from "../components/AppBar";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -93,6 +93,13 @@ export default function CreateClassRoom() {
         setIsValidTitleUnique(false);
       });
   }
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <>

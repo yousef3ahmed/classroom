@@ -8,7 +8,7 @@ function Login() {
   const [isLoding, setIsLoding] = React.useState(true);
   const navigate = useNavigate();
   useEffect(() => {
-    const token = localStorage.getItem("accessToken");
+    const token = localStorage.getItem("token");
     if (token) {
       navigate("/home");
     } else {
