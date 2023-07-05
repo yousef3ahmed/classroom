@@ -25,16 +25,44 @@ const QuizSideBarItem = ({ myquestion }) => {
         </div>
       </div>
       <div className="blueprint-container-options">
-        <div className="blueprint-container-option">
+        <div
+          className="blueprint-container-option"
+          style={
+            correctAns === "option1"
+              ? { backgroundColor: "green" }
+              : { backgroundColor: "#f5f5f5" }
+          }
+        >
           <span>{option1 !== "" ? option1 : "Answer A"}</span>
         </div>
-        <div className="blueprint-container-option">
+        <div
+          className="blueprint-container-option"
+          style={
+            correctAns === "option2"
+              ? { backgroundColor: "green" }
+              : { backgroundColor: "#f8dabb" }
+          }
+        >
           <span>{option2 !== "" ? option2 : "Answer B"}</span>
         </div>
-        <div className="blueprint-container-option">
+        <div
+          className="blueprint-container-option"
+          style={
+            correctAns === "option3"
+              ? { backgroundColor: "green" }
+              : { backgroundColor: "#fdfcdf" }
+          }
+        >
           <span>{option3 !== "" ? option3 : "Answer C (optional)"}</span>
         </div>
-        <div className="blueprint-container-option">
+        <div
+          className="blueprint-container-option"
+          style={
+            correctAns === "option4"
+              ? { backgroundColor: "green" }
+              : { backgroundColor: "#c4d6e8" }
+          }
+        >
           <span>{option4 !== "" ? option4 : "Answer D (optional)"}</span>
         </div>
       </div>

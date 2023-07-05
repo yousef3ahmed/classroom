@@ -51,6 +51,7 @@ const TakeQize = () => {
               quizField={quizQuestions[currentQuestionIndex]}
               currentQuestionIndex={currentQuestionIndex}
               handleChooseAns={handleChooseAns}
+              userAnswers={userAnswers}
             />
           )
         )}

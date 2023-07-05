@@ -44,7 +44,11 @@ const CreateQuizCard = ({
                 type="text"
                 required
                 onChange={handleChange}
-                style={{ backgroundColor: "#f5f5f5" }}
+                style={
+                  correctAns === "option1"
+                    ? { backgroundColor: "green" }
+                    : { backgroundColor: "#f5f5f5" }
+                }
                 onDoubleClick={handleDoubleClick}
                 name="option1"
                 value={option1}
@@ -56,7 +60,11 @@ const CreateQuizCard = ({
                 type="text"
                 required
                 onChange={handleChange}
-                style={{ backgroundColor: "#f8dabb" }}
+                style={
+                  correctAns === "option2"
+                    ? { backgroundColor: "green" }
+                    : { backgroundColor: "#f8dabb" }
+                }
                 onDoubleClick={handleDoubleClick}
                 name="option2"
                 value={option2}
@@ -68,7 +76,11 @@ const CreateQuizCard = ({
                 label="Answer C (optional)"
                 type="text"
                 onChange={handleChange}
-                style={{ backgroundColor: "#fdfcdf" }}
+                style={
+                  correctAns === "option3"
+                    ? { backgroundColor: "green" }
+                    : { backgroundColor: "#fdfcdf" }
+                }
                 onDoubleClick={handleDoubleClick}
                 name="option3"
                 value={option3}
@@ -79,7 +91,11 @@ const CreateQuizCard = ({
                 label="Answer D (optional)"
                 type="text"
                 onChange={handleChange}
-                style={{ backgroundColor: "#c4d6e8" }}
+                style={
+                  correctAns === "option4"
+                    ? { backgroundColor: "green" }
+                    : { backgroundColor: "#c4d6e8" }
+                }
                 onDoubleClick={handleDoubleClick}
                 name="option4"
                 value={option4}
