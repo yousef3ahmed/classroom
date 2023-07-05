@@ -16,21 +16,44 @@ export default {
     const config = {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
-        'Content-Type': "application/json",
+        "Content-Type": "application/json",
       },
     };
     return await axios.get(`${apiServer}/classrooms/owned`, config);
   },
 
-
-  createClassRoom: async ( data ) => {
+  createClassRoom: async (data) => {
     const config = {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
-        'Content-Type': "application/json",
+        "Content-Type": "application/json",
       },
     };
-    return await axios.post(`${apiServer}/classrooms`, data ,config);
+    return await axios.post(`${apiServer}/classrooms`, data, config);
   },
+
+  getQuizs: async (pinCode) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+    };
+    return await axios.get(
+      `${apiServer}/admin/classrooms/${pinCode}/quizzes`,
+      config
+    );
+  },
+
+  createQuiz: async (data , pinCode) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+    };
+    return await axios.post(`${apiServer}/admin/classrooms/${pinCode}/quizzes`, data, config);
+  },
+
 
 };

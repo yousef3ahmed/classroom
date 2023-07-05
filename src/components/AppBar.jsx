@@ -10,7 +10,6 @@ import Avatar from '@mui/material/Avatar';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 function App() {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [admin, setAadmin] = useState(false);
   const navigate = useNavigate();
   const handleMenuClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -38,7 +37,7 @@ function App() {
       cursor: "pointer",
       fontFamily: "Poppins",
       fontWeight: "600",
-      fontSize: "20px",
+      fontSize: "30px",
       color: "#F8DABB",
     },
     verticalLine: {

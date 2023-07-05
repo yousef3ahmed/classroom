@@ -1,0 +1,62 @@
+.container {
+    width: 190px;
+    height: 120px;
+    border-radius: 12px;
+    border: #f8dabb 1px solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .gameName {
+    font-family: "Poppins";
+    font-weight: 600;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 48px;
+    line-height: 133%;
+    letter-spacing: -0.02em;
+    color: #f8dabb;
+    text-align: center;
+    width: 80%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  
+  .buttonContainer {
+    display: flex;
+  
+    justify-content: center;
+    width: 158px;
+  }
+  
+  .emptyButton {
+    color: #e0786c;
+    margin-right: 16px;
+    background-color: transparent;
+  }
+  
+  .fillButton {
+    color: #fdfcdf;
+    background-color: #e0786c;
+  }
+  
+  .fillButton,
+  .emptyButton {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    line-height: 110%;
+    text-align: center;
+    vertical-align: top;
+    letter-spacing: -0.02em;
+    border-radius: 12px;
+    box-sizing: border-box;
+    width: 72px;
+    height: 32px;
+    border: #e0786c 1px solid;
+  }
+  

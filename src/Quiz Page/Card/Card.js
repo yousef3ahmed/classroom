@@ -6,8 +6,7 @@ function Card({ ClassRoom }) {
   const navigate = useNavigate();
   
   const handleClassRoom = async () => {
-      navigate(`/classroom/${ClassRoom.id}`);
-    
+    navigate(`/classroom?pin_code=${ClassRoom.id}`);
   };
   return (
     <div className={styles.container}>
@@ -18,7 +17,7 @@ function Card({ ClassRoom }) {
           style={{ width: "118px", height: "32px" }}
           onClick={handleClassRoom}
         >
-          View
+          Start
         </button>
       </div>
     </div>

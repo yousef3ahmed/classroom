@@ -1,0 +1,105 @@
+body, html {
+  overflow: hidden;
+}
+
+.body-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    padding-top: 97px;
+    background-color: #1a3852;
+  }
+  
+  .colorfully-div {
+    height: 80%;
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    background: radial-gradient(
+      farthest-corner at -20% -40%,
+      #3c87a7 35%,
+      #89c1be 35%,
+      #89c1be 65%,
+      #f9e7ca 45%,
+      #f9e7ca 65%,
+      #f8dfc2 65%,
+      #f8dfc2 90%,
+      #efbaa6 90%
+    );
+  }
+  
+  .inner-div {
+    background-color: white;
+    width: 60%;
+    height: auto;
+    border-radius: 12px;
+    border: 1px solid #387c89;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px;
+  }
+  .inner-div h2 {
+    font-family: "Poppins";
+    margin-bottom: 30px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    color: #1a3852;
+  }
+  .inner-div p {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    color: #1a3852;
+  }
+  
+  @media screen and (max-width: 778px) {
+    .inner-div {
+      width: 100%;
+      padding: 30px 10px;
+      /* height: 100%; */
+    }
+    .main-div2 {
+      padding: 0px;
+      width: 100%;
+    }
+    .colorfully-div {
+      /* width: 100%; */
+      padding: 30px 20px;
+      margin: 0px 10px;
+      /* height: 100%; */
+    }
+  }
+  @media screen and (max-width: 425px) {
+    .colorfully-div {
+      width: 90%;
+    }
+  }
+  
+  /* decres all font sizes in the screen with height less than or equal 555px*/
+  @media screen and (max-height: 555px) {
+    .inner-div h2 {
+      font-size: 23px;
+      margin-bottom: 10px;
+    }
+    .inner-div p {
+      font-size: 14px;
+    }
+  }
+  @media screen and (max-height: 635px) {
+    .inner-div h2 {
+      font-size: 23px;
+      margin-bottom: 8px;
+    }
+    .inner-div p {
+      font-size: 14px;
+    }
+  }
+  
