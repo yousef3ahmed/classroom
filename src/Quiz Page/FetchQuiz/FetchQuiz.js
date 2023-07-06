@@ -3,8 +3,7 @@ import Card from "../Card/Card";
 import styles from "./FetchQuiz.module.css";
 import apis from "../../apis/auth";
 import LoadingForHoem from "../../components/Loading/Loading For Home/LoadingForHoem";
-import { useLocation, useParams } from 'react-router-dom';
-
+import { useLocation, useParams } from "react-router-dom";
 
 function FetchQuiz() {
   const [quiz, setQuiz] = useState();
@@ -15,9 +14,9 @@ function FetchQuiz() {
 
   useEffect(() => {
     setisLoading(true);
-    console.log( pinCode );
+    console.log(pinCode);
     apis
-      .getQuizs( pinCode )
+      .getQuizs(pinCode)
       .then((response) => {
         const result = response.data;
         console.log(result);
@@ -35,7 +34,10 @@ function FetchQuiz() {
   ) : (
     <>
       <section className={styles.gameContainer} style={{ marginTop: "20px" }}>
-        {quiz.map((onequiz) => onequiz.name && <Card ClassRoom={onequiz} />)}
+        {quiz.map(
+          (onequiz) =>
+            onequiz.name && <Card key={onequiz.id} ClassRoom={onequiz} />
+        )}
       </section>
     </>
   );

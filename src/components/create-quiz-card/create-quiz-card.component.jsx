@@ -6,6 +6,7 @@ import "./create-quiz-card.styles.css";
 const CreateQuizCard = ({
   handleSubmit,
   handleChange,
+  handleCreateQuiz,
   handelRemoveQuestion,
   handleDoubleClick,
   formRef,
@@ -17,7 +18,9 @@ const CreateQuizCard = ({
     <div className="create-quiz-main-area">
       <div className="main-area-header">
         <h2 className="quiz-name">Create Quiz</h2>
-        <button className="create-quiz-buttons">Create</button>
+        <button className="create-quiz-buttons" onClick={handleCreateQuiz}>
+          Create
+        </button>
       </div>
       <div className="create-qution-card">
         <div className="main-area-header">

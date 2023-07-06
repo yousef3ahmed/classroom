@@ -100,24 +100,33 @@ export default function AddQuiz() {
     const data = new FormData();
     data.append("name", gameTitle);
     data.append("duration", duration);
-    data.append( "creationDateTime"  , "2023-06-15T10:00:00" ) ;
-    data.append( "closeDate" , "2024-07-16T11:00:00" );
+    data.append("creationDateTime", "2023-06-15T10:00:00");
+    data.append("closeDate", "2024-07-16T11:00:00");
 
-    console.log( pinCode );
-    console.log( data );
+    console.log(pinCode);
+    console.log(data);
 
-    try {
-      const response = await apis.createQuiz(data, pinCode);
-      if (response.status === 200) {
-        const game = response.data.name;
-        navigate(`/classroom/${pinCode}`);
-      } else {
-        setIsValidTitleUnique(false);
-      }
-    } catch (error) {
-      console.log(error.message);
-      setIsValidTitleUnique(false);
+    const dataObject = {};
+    for (const [key, value] of data.entries()) {
+      dataObject[key] = value;
     }
+
+    navigate(`/classroom/${pinCode}/add-quiz/createQuiz`, {
+      state: { headerData: dataObject },
+    });
+
+    // try {
+    //   const response = await apis.createQuiz(data, pinCode);
+    //   if (response.status === 200) {
+    //     const game = response.data.name;
+    //     navigate(`/classroom/${pinCode}`);
+    //   } else {
+    //     setIsValidTitleUnique(false);
+    //   }
+    // } catch (error) {
+    //   console.log(error.message);
+    //   setIsValidTitleUnique(false);
+    // }
   }
 
   useEffect(() => {
@@ -126,8 +135,6 @@ export default function AddQuiz() {
       navigate("/");
     }
   }, []);
-
-
 
   function CustomDatePickerInput({ value, onClick }) {
     return (
@@ -144,7 +151,6 @@ export default function AddQuiz() {
           "& .MuiFormHelperText-root": {
             fontSize: "12px",
           },
-          
         }}
         className="text-field"
         onKeyDown={(e) => {
@@ -259,7 +265,6 @@ export default function AddQuiz() {
                 customInput={<CustomDatePickerInput />}
               />
             </div> */}
-
 
             <Button
               onClick={handleCreateGame}

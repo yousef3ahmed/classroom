@@ -22,7 +22,7 @@ const CreateQuizSideBar = ({ handleAddQution }) => {
       <button
         type="button"
         onClick={handleAddQution}
-        class="add-new-card-button"
+        className="add-new-card-button"
       >
         Add Question
       </button>

@@ -77,6 +77,8 @@ export const CreateQuizProvider = ({ children }) => {
     removeQuestion,
     selectedQuestion,
     setSelectedQuestion,
+    setQuestions,
+    setQuestions,
   };
 
   return (
