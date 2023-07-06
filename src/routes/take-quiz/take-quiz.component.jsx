@@ -2,6 +2,9 @@ import { useState, useEffect, Fragment } from "react";
 
 import QUIZ_DATA from "./dummy-quize";
 import TakeQuizCard from "../../components/take-quiz-card/take-quiz-card.component";
+import apis from "../../apis/auth.js";
+
+import { useParams, useNavigate } from "react-router";
 
 import "./taske-quiz.styles.css";
 
@@ -11,8 +14,30 @@ const TakeQize = () => {
   const [quizFinished, setQuizFinished] = useState(false);
   const [userAnswers, setUserAnswers] = useState([]);
 
+  const { pin_code, quiz_id } = useParams();
+  const navigate = useNavigate();
+
   useEffect(() => {
+    const fetchData = async () => {
+      console.log(pin_code);
+      console.log(quiz_id);
+
+      try {
+        const response = await apis.takeQuiz(pin_code, quiz_id);
+        console.log(response.data);
+        if (response.status === 200) {
+          console.log("done");
+        } else {
+          console.log("fail");
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+
     setQuizQuestions(QUIZ_DATA);
+
+    fetchData();
   }, []);
 
   useEffect(() => {
@@ -30,6 +55,13 @@ const TakeQize = () => {
       return () => clearInterval(interval);
     }
   }, [currentQuestionIndex, quizQuestions]);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/");
+    }
+  }, []);
 
   const handleChooseAns = (questionIndex, selectedAnswer) => {
     setUserAnswers((prevAnswers) => {

@@ -45,15 +45,44 @@ export default {
     );
   },
 
-  createQuiz: async (data , pinCode) => {
+  createQuiz: async (data, pinCode) => {
     const config = {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
       },
     };
-    return await axios.post(`${apiServer}/admin/classrooms/${pinCode}/quizzes`, data, config);
+    return await axios.post(
+      `${apiServer}/admin/classrooms/${pinCode}/quizzes`,
+      data,
+      config
+    );
   },
 
+  createQuizWithData: async (data, pinCode) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+    };
+    return await axios.post(
+      `${apiServer}/admin/classrooms/${pinCode}/quizzes/with-questions`,
+      data,
+      config
+    );
+  },
 
+  takeQuiz: async (pinCode, quizId) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+    };
+    return await axios.post(
+      `${apiServer}/classrooms/${pinCode}/quizzes/${quizId}/take`,
+      config
+    );
+  },
 };

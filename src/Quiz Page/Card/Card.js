@@ -1,12 +1,16 @@
 import React from "react";
 import styles from "./Card.module.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function Card({ ClassRoom }) {
   const navigate = useNavigate();
-  
+  const params = useParams();
+
   const handleClassRoom = async () => {
-    navigate(`/classroom?pin_code=${ClassRoom.id}`);
+    const pinCode = params.pin_code;
+    const quizId = ClassRoom.id;
+    navigate(`/classrooms/${pinCode}/TakeQize/${quizId}`);
+    // navigate(`/classroom?pin_code=${ClassRoom.id}`);
   };
   return (
     <div className={styles.container}>
