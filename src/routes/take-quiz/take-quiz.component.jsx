@@ -1,6 +1,5 @@
 import { useState, useEffect, Fragment } from "react";
 
-import QUIZ_DATA from "./dummy-quize";
 import TakeQuizCard from "../../components/take-quiz-card/take-quiz-card.component";
 import apis from "../../apis/auth.js";
 
@@ -18,26 +17,23 @@ const TakeQize = () => {
 
   const { pin_code, quiz_id } = useParams();
   const navigate = useNavigate();
-  /**
 
-"
- */
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await apis.takeQuiz(pin_code, quiz_id);
-        console.log(response.data.questions);
-        if (response.status === 200) {
-          setQuizQuestions(response.data.questions);
-        } else {
-          alert(`error in fetch data ${response.data}`);
-          console.log("fail");
-        }
-      } catch (error) {
-        console.log(error.message);
+  const fetchData = async () => {
+    try {
+      const response = await apis.takeQuiz(pin_code, quiz_id);
+      console.log(response.data.questions);
+      if (response.status === 200) {
+        setQuizQuestions(response.data.questions);
+      } else {
+        alert(`error in fetch data ${response.data}`);
+        console.log("fail");
       }
-    };
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -49,28 +45,29 @@ const TakeQize = () => {
     });
   };
 
+  const submithData = async () => {
+    try {
+      const data = convertAnswersToFormat(userAnswers, quizQuestions);
+      const response = await apis.submitQuiz(quiz_id, data);
+      console.log(response.data);
+      if (response.status === 200) {
+        alert(`quiz submited successfully ${response.data}`);
+        navigate(`/classroom/${pin_code}`);
+      } else {
+        alert(`error in submit your ${response.data}`);
+        console.log("fail");
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   useEffect(() => {
     if (
       quizQuestions.length !== 0 &&
       currentQuestionIndex === quizQuestions.length
     ) {
       setQuizFinished(true);
-      const data = convertAnswersToFormat(userAnswers, quizQuestions);
-      const submithData = async () => {
-        try {
-          const response = await apis.submitQuiz(quiz_id, data);
-          console.log(response.data);
-          if (response.status === 200) {
-            alert(`quiz submited successfully ${response.data}`);
-            navigate(`/classroom/${pin_code}`);
-          } else {
-            alert(`error in submit your ${response.data}`);
-            console.log("fail");
-          }
-        } catch (error) {
-          console.log(error.message);
-        }
-      };
       submithData();
       console.log(userAnswers);
     } else {

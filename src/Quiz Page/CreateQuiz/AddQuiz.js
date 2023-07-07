@@ -100,8 +100,8 @@ export default function AddQuiz() {
     const data = new FormData();
     data.append("name", gameTitle);
     data.append("duration", duration);
-    data.append("creationDateTime", "2023-06-15T10:00:00");
-    data.append("closeDate", "2024-07-16T11:00:00");
+    data.append("creationDateTime", "2023-07-01T10:00:00");
+    data.append("closeDate", "2024-07-15T11:00:00");
 
     console.log(pinCode);
     console.log(data);
