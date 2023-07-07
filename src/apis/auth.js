@@ -82,6 +82,21 @@ export default {
     };
     return await axios.post(
       `${apiServer}/classrooms/${pinCode}/quizzes/${quizId}/take`,
+      {},
+      config
+    );
+  },
+
+  submitQuiz: async (quizId, data) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+    };
+    return await axios.post(
+      `${apiServer}/classrooms/quizzes/${quizId}/submit`,
+      data,
       config
     );
   },
