@@ -41,6 +41,14 @@ const TakeQize = () => {
     fetchData();
   }, []);
 
+  const handleChooseAns = (questionIndex, selectedAnswer) => {
+    setUserAnswers((prevAnswers) => {
+      const newAnswers = [...prevAnswers];
+      newAnswers[questionIndex] = selectedAnswer;
+      return newAnswers;
+    });
+  };
+
   useEffect(() => {
     if (
       quizQuestions.length !== 0 &&
@@ -54,6 +62,7 @@ const TakeQize = () => {
           console.log(response.data);
           if (response.status === 200) {
             alert(`quiz submited successfully ${response.data}`);
+            navigate(`/classroom/${pin_code}`);
           } else {
             alert(`error in submit your ${response.data}`);
             console.log("fail");
@@ -65,7 +74,11 @@ const TakeQize = () => {
       submithData();
       console.log(userAnswers);
     } else {
-      // setQuizFinished(false);
+      if (quizQuestions.length)
+        handleChooseAns(
+          currentQuestionIndex,
+          quizQuestions[currentQuestionIndex].lastAnswer
+        );
       const interval = setInterval(() => {
         setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
       }, 10000);
@@ -80,19 +93,11 @@ const TakeQize = () => {
     }
   }, []);
 
-  const handleChooseAns = (questionIndex, selectedAnswer) => {
-    setUserAnswers((prevAnswers) => {
-      const newAnswers = [...prevAnswers];
-      newAnswers[questionIndex] = selectedAnswer;
-      return newAnswers;
-    });
-  };
-
   return (
     <div className="container-for-quiz-page">
       <div className="take-quiz-container">
         {quizFinished ? (
-          <h2>Quiz finished!</h2>
+          <h2>Quiz finished you can show your grade after quize deadline!</h2>
         ) : (
           quizQuestions[currentQuestionIndex] && (
             <TakeQuizCard
