@@ -4,6 +4,8 @@ import QUIZ_DATA from "./dummy-quize";
 import TakeQuizCard from "../../components/take-quiz-card/take-quiz-card.component";
 import apis from "../../apis/auth.js";
 
+import { convertAnswersToFormat } from "./format-converter.js";
+
 import { useParams, useNavigate } from "react-router";
 
 import "./taske-quiz.styles.css";
@@ -16,26 +18,25 @@ const TakeQize = () => {
 
   const { pin_code, quiz_id } = useParams();
   const navigate = useNavigate();
+  /**
 
+"
+ */
   useEffect(() => {
     const fetchData = async () => {
-      console.log(pin_code);
-      console.log(quiz_id);
-
       try {
         const response = await apis.takeQuiz(pin_code, quiz_id);
-        console.log(response.data);
+        console.log(response.data.questions);
         if (response.status === 200) {
-          console.log("done");
+          setQuizQuestions(response.data.questions);
         } else {
+          alert(`error in fetch data ${response.data}`);
           console.log("fail");
         }
       } catch (error) {
         console.log(error.message);
       }
     };
-
-    setQuizQuestions(QUIZ_DATA);
 
     fetchData();
   }, []);
@@ -46,6 +47,22 @@ const TakeQize = () => {
       currentQuestionIndex === quizQuestions.length
     ) {
       setQuizFinished(true);
+      const data = convertAnswersToFormat(userAnswers, quizQuestions);
+      const submithData = async () => {
+        try {
+          const response = await apis.submitQuiz(quiz_id, data);
+          console.log(response.data);
+          if (response.status === 200) {
+            alert(`quiz submited successfully ${response.data}`);
+          } else {
+            alert(`error in submit your ${response.data}`);
+            console.log("fail");
+          }
+        } catch (error) {
+          console.log(error.message);
+        }
+      };
+      submithData();
       console.log(userAnswers);
     } else {
       // setQuizFinished(false);
