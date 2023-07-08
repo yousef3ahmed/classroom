@@ -5,9 +5,9 @@ import HomeIcon from "@mui/icons-material/Home";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useNavigate } from "react-router-dom";
 import apis from "../apis/auth";
-import Avatar from '@mui/material/Avatar';
+import Avatar from "@mui/material/Avatar";
 
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 function App() {
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
@@ -20,7 +20,6 @@ function App() {
   };
 
   const logout = async () => {
-
     localStorage.clear();
     navigate("/");
   };

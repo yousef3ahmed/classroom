@@ -4,11 +4,19 @@
     border-radius: 12px;
     border: #f8dabb 1px solid;
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
   
+  .menuButton {
+    position: absolute; /* Add this line to make the button positioned relative to the container */
+    top: 0; /* Adjust the top position as per your requirements */
+    right: 0; /* Adjust the right position as per your requirements */
+    /* Existing styles */
+  }
+
   .gameName {
     font-family: "Poppins";
     font-weight: 600;
@@ -20,9 +28,10 @@
     color: #f8dabb;
     text-align: center;
     width: 80%;
-    overflow: hidden;
+    /* overflow: hidden; */
     white-space: nowrap;
     text-overflow: ellipsis;
+    margin-left: 25px;
   }
   
   .buttonContainer {
@@ -58,5 +67,19 @@
     width: 72px;
     height: 32px;
     border: #e0786c 1px solid;
+    /* margin-left: 30px; */
+
   }
   
+  .MuiIconButton_root {
+    /* flex: 0 0 auto;
+    color: rgba(0, 0, 0, 0.54); */
+    /* padding: 12px; */
+    /* overflow: visible;
+    font-size: 1.5rem;
+    text-align: center;
+    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    border-radius: 50%;*/
+    height: 0px; 
+
+}
