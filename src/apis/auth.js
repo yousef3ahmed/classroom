@@ -100,4 +100,32 @@ export default {
       config
     );
   },
+
+  endQuiz: async (quizId, data) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+    };
+    return await axios.post(
+      `${apiServer}/classrooms/quizzes/${quizId}/end`,
+      data,
+      config
+    );
+  },
+
+  submitQuestion: async (quizId, questionId, data) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+    };
+    return await axios.post(
+      `${apiServer}/classrooms/quizzes/${quizId}/submit/${questionId}`,
+      data,
+      config
+    );
+  },
 };

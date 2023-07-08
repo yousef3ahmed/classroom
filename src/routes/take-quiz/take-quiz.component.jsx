@@ -21,21 +21,46 @@ const TakeQize = () => {
   const fetchData = async () => {
     try {
       const response = await apis.takeQuiz(pin_code, quiz_id);
-      console.log(response.data.questions);
+      console.log(response.status);
       if (response.status === 200) {
         setQuizQuestions(response.data.questions);
       } else {
-        alert(`error in fetch data ${response.data}`);
+        alert(`error in fetching data`);
         console.log("fail");
+        navigate(`/classroom/${pin_code}`);
       }
     } catch (error) {
-      console.log(error.message);
+      alert(error.response.data);
+      navigate(`/classroom/${pin_code}`);
+      console.log(error);
     }
   };
 
   useEffect(() => {
     fetchData();
   }, []);
+
+  const submitQuestionData = async (questionIndex, selectedAnswer) => {
+    try {
+      const data = {
+        id: quizQuestions[questionIndex].id,
+        answer: selectedAnswer,
+      };
+      const response = await apis.submitQuestion(
+        quiz_id,
+        quizQuestions[questionIndex].id,
+        data
+      );
+      console.log(response.data);
+      if (response.status === 200) {
+        console.log("done");
+      } else {
+        console.log("fail");
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   const handleChooseAns = (questionIndex, selectedAnswer) => {
     setUserAnswers((prevAnswers) => {
@@ -45,10 +70,10 @@ const TakeQize = () => {
     });
   };
 
-  const submithData = async () => {
+  const endQuizData = async () => {
     try {
       const data = convertAnswersToFormat(userAnswers, quizQuestions);
-      const response = await apis.submitQuiz(quiz_id, data);
+      const response = await apis.endQuiz(quiz_id, data);
       console.log(response.data);
       if (response.status === 200) {
         alert(`quiz submited successfully ${response.data}`);
@@ -68,7 +93,7 @@ const TakeQize = () => {
       currentQuestionIndex === quizQuestions.length
     ) {
       setQuizFinished(true);
-      submithData();
+      endQuizData();
       console.log(userAnswers);
     } else {
       if (quizQuestions.length)
@@ -77,6 +102,11 @@ const TakeQize = () => {
           quizQuestions[currentQuestionIndex].lastAnswer
         );
       const interval = setInterval(() => {
+        if (userAnswers[currentQuestionIndex])
+          submitQuestionData(
+            currentQuestionIndex,
+            userAnswers[currentQuestionIndex]
+          );
         setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
       }, 10000);
       return () => clearInterval(interval);
@@ -95,16 +125,16 @@ const TakeQize = () => {
       <div className="take-quiz-container">
         {quizFinished ? (
           <h2>Quiz finished you can show your grade after quize deadline!</h2>
+        ) : quizQuestions[currentQuestionIndex] ? (
+          <TakeQuizCard
+            key={currentQuestionIndex}
+            quizField={quizQuestions[currentQuestionIndex]}
+            currentQuestionIndex={currentQuestionIndex}
+            handleChooseAns={handleChooseAns}
+            userAnswers={userAnswers}
+          />
         ) : (
-          quizQuestions[currentQuestionIndex] && (
-            <TakeQuizCard
-              key={currentQuestionIndex}
-              quizField={quizQuestions[currentQuestionIndex]}
-              currentQuestionIndex={currentQuestionIndex}
-              handleChooseAns={handleChooseAns}
-              userAnswers={userAnswers}
-            />
-          )
+          <h2>Please Wait</h2>
         )}
       </div>
     </div>
