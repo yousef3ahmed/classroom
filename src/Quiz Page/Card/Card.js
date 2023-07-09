@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { AppBar, Toolbar, IconButton, Menu, MenuItem } from "@material-ui/core";
+import apis from "../../apis/auth";
 
 function Card({ ClassRoom }) {
   const navigate = useNavigate();
@@ -15,13 +16,30 @@ function Card({ ClassRoom }) {
     setAnchorEl(null);
   };
 
-  const handleDelete = () => {
-    // write you logic ya Sakr
-   };
- 
-   const handleEdit = () => {
-     // // write you logic ya Sakr
+  const handleDelete = async () => {
+    const pinCode = params.pin_code;
+    try {
+      const response = await apis.deleteQuiz(pinCode, ClassRoom.id);
+      if (response.status === 200) {
+        navigate(`/classroom/${pinCode}`);
+      } else {
+        console.log("error");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleEdit = () => {
+    // // write you logic ya Sakr
+    const pinCode = params.pin_code;
+    const data = {
+      quizId: ClassRoom.id,
     };
+    navigate(`/classroom/${pinCode}/add-quiz/createQuiz/1`, {
+      state: { headerData: data },
+    });
+  };
 
   const handleClassRoom = async () => {
     const pinCode = params.pin_code;

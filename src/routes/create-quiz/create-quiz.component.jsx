@@ -8,11 +8,13 @@ import CreateQuizSideBar from "../../components/create-quiz-sideBar/create-quiz-
 import apis from "../../apis/auth.js";
 import {
   convertDataToFitApi,
-  convertDataToFormData,
+  convertDataToFitApiWithoutHeader,
+  convertDataToFitMyCode,
+  getNewQuestions,
+  getUpdateQuestions,
 } from "./format-converter.js";
 
 import "./create-quiz.styles.css";
-
 const defaultQuizField = {
   id: "",
   question: "",
@@ -21,7 +23,11 @@ const defaultQuizField = {
   option3: "",
   option4: "",
   correctAns: "",
+  questionStatus: "new",
 };
+/*
+questionStatus (old, new, update)
+*/
 
 const CreateQuiz = () => {
   const [quizField, setQuizField] = useState(defaultQuizField);
@@ -35,7 +41,7 @@ const CreateQuiz = () => {
     questions,
   } = useContext(CreateQuizContext);
 
-  const params = useParams();
+  const { pin_code, stat } = useParams();
   const { state } = useLocation();
   const navigate = useNavigate();
 
@@ -58,25 +64,125 @@ const CreateQuiz = () => {
     }
   }, []);
 
-  const handleCreateQuiz = async () => {
-    const pinCode = params.pin_code;
-    const headerData = state.headerData;
-    const data = convertDataToFitApi(headerData, questions);
-    console.log(data);
-    try {
-      const response = await apis.createQuizWithData(data, pinCode);
-
-      console.log(response);
-
-      if (response.status === 200) {
-        setSelectedQuestion({ ...defaultQuizField });
-        setQuestions([{ ...defaultQuizField }]);
-        navigate(`/classroom/${pinCode}`);
-      } else {
-        console.log(response);
+  const fetchQuestions = async () => {
+    if (stat === "1") {
+      const quizId = state.headerData.quizId;
+      try {
+        const response = await apis.getQuiz(pin_code, quizId);
+        console.log(response.status);
+        if (response.status === 200) {
+          if (response.data) {
+            console.log(response.data.questions);
+            const questionsData = convertDataToFitMyCode(
+              response.data.questions
+            );
+            console.log(questionsData);
+            setQuestions([...questionsData, { ...defaultQuizField }]);
+          }
+        } else {
+          alert(`error in fetching data`);
+          console.log("fail");
+          navigate(`/classroom/${pin_code}`);
+        }
+      } catch (error) {
+        alert(error.response.data);
+        navigate(`/classroom/${pin_code}`);
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error.message);
+    }
+  };
+
+  const addQuestions = async (questionToAdd) => {
+    if (stat === "1") {
+      const quizId = state.headerData.quizId;
+      const { id, ...newquestionToAdd } = questionToAdd;
+      try {
+        const response = await apis.addQuestion(
+          pin_code,
+          quizId,
+          newquestionToAdd
+        );
+        console.log(response);
+        if (response.status === 200) {
+          console.log("done");
+        } else {
+          console.log("fail");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  const updateQuestions = async (questionToupdate) => {
+    if (stat === "1") {
+      const quizId = state.headerData.quizId;
+      const { id, ...newquestionToupdate } = questionToupdate;
+      try {
+        const response = await apis.UpdateQuestion(
+          pin_code,
+          quizId,
+          questionToupdate.id,
+          newquestionToupdate
+        );
+        console.log(response);
+        if (response.status === 200) {
+          console.log("done");
+        } else {
+          console.log("fail");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    fetchQuestions();
+  }, []);
+
+  const handleCreateQuiz = async () => {
+    const headerData = state.headerData;
+    if (stat === "0") {
+      const data = convertDataToFitApi(headerData, questions);
+      console.log(data);
+      try {
+        const response = await apis.createQuizWithData(data, pin_code);
+
+        console.log(response);
+
+        if (response.status === 200) {
+          setSelectedQuestion({ ...defaultQuizField });
+          setQuestions([{ ...defaultQuizField }]);
+          navigate(`/classroom/${pin_code}`);
+        } else {
+          console.log(response);
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    } else if (stat === "1") {
+      const newQuestionsToAdd = convertDataToFitApiWithoutHeader(
+        getNewQuestions(questions)
+      );
+      const updatedQuestionsToAdd = convertDataToFitApiWithoutHeader(
+        getUpdateQuestions(questions)
+      );
+
+      console.log(newQuestionsToAdd);
+      newQuestionsToAdd.forEach(async (questiontoAdd) => {
+        console.log(questiontoAdd);
+        await addQuestions(questiontoAdd);
+      });
+
+      console.log(updatedQuestionsToAdd);
+      updatedQuestionsToAdd.forEach(async (questiontoupdate) => {
+        console.log(questiontoupdate);
+        await updateQuestions(questiontoupdate);
+      });
+      setSelectedQuestion({ ...defaultQuizField });
+      setQuestions([{ ...defaultQuizField }]);
+      navigate(`/classroom/${pin_code}`);
     }
   };
 
@@ -145,6 +251,7 @@ const CreateQuiz = () => {
       <div className="create-quiz-container">
         <CreateQuizSideBar handleAddQution={handleAddQution} />
         <CreateQuizCard
+          stat={stat}
           handleCreateQuiz={handleCreateQuiz}
           handleSubmit={handleSubmit}
           handleChange={handleChange}

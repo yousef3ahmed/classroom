@@ -1,5 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 
+// questionStatus (old, new, update)
+
 const addQuizQuestion = (questions, quizQuestionToAdd) => {
   const existingQuestion = questions.find(
     (question) => question.id === quizQuestionToAdd.id
@@ -7,7 +9,9 @@ const addQuizQuestion = (questions, quizQuestionToAdd) => {
 
   if (existingQuestion) {
     return questions.map((question) =>
-      question.id === quizQuestionToAdd.id ? quizQuestionToAdd : question
+      question.id === quizQuestionToAdd.id
+        ? { ...quizQuestionToAdd, questionStatus: "update" }
+        : question
     );
   }
 
@@ -19,11 +23,11 @@ const addQuizQuestion = (questions, quizQuestionToAdd) => {
     questions[questions.length - 1].option3 = quizQuestionToAdd.option3;
     questions[questions.length - 1].option4 = quizQuestionToAdd.option4;
     questions[questions.length - 1].correctAns = quizQuestionToAdd.correctAns;
-
+    questions[questions.length - 1].questionStatus = "new";
     return [...questions];
   }
 
-  return [...questions, { ...quizQuestionToAdd }];
+  return [...questions, { ...quizQuestionToAdd, questionStatus: "new" }];
 };
 
 const removeQuizQuestion = (questions, quizQuestiontToRemove) => {
@@ -40,6 +44,7 @@ const defaultQuizField = {
   option3: "",
   option4: "",
   correctAns: "",
+  questionStatus: "new",
 };
 
 // as the actual value you want to access

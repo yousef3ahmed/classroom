@@ -42,6 +42,38 @@ export const convertDataToFitApi = (headerData, questions) => {
   return quizObject;
 };
 
+export const convertDataToFitApiWithoutHeader = (questions) => {
+  const newquestions = questions
+    .filter((question) => question.id !== "")
+    .map((question) => {
+      const questionObject = {};
+
+      // Add the question text and options to the questionObject
+      questionObject.id = question.id;
+      questionObject.text = question.question;
+      questionObject.optionA = question.option1;
+      questionObject.optionB = question.option2;
+      questionObject.optionC = question.option3;
+      questionObject.optionD = question.option4;
+
+      // Set the value of correctAnswer based on the correct option for each question
+      if (question.correctAns === "option1") {
+        questionObject.correctAnswer = "a";
+      } else if (question.correctAns === "option2") {
+        questionObject.correctAnswer = "b";
+      } else if (question.correctAns === "option3") {
+        questionObject.correctAnswer = "c";
+      } else if (question.correctAns === "option4") {
+        questionObject.correctAnswer = "d";
+      } else {
+        questionObject.correctAnswer = "";
+      }
+
+      return questionObject;
+    });
+  return newquestions;
+};
+
 export const convertDataToFormData = (quizObject) => {
   const formData = new FormData();
 
@@ -67,4 +99,28 @@ export const convertDataToFormData = (quizObject) => {
   });
 
   return formData;
+};
+
+export const convertDataToFitMyCode = (oldFormat) => {
+  const newFormat = oldFormat.map((obj) => ({
+    id: obj.id.toString(),
+    question: obj.text,
+    option1: obj.optionA,
+    option2: obj.optionB,
+    option3: obj.optionC,
+    option4: obj.optionD,
+    correctAns:
+      "option" + (obj.correctAnswer.charCodeAt(0) - "a".charCodeAt(0) + 1),
+    questionStatus: "old",
+  }));
+
+  return newFormat;
+};
+
+export const getNewQuestions = (questions) => {
+  return questions.filter((question) => question.questionStatus === "new");
+};
+
+export const getUpdateQuestions = (questions) => {
+  return questions.filter((question) => question.questionStatus === "update");
 };

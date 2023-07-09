@@ -73,6 +73,19 @@ export default {
     );
   },
 
+  getQuiz: async (pinCode, quizId) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+    };
+    return await axios.get(
+      `${apiServer}/admin/classrooms/${pinCode}/quizzes/${quizId}/with-questions`,
+      config
+    );
+  },
+
   takeQuiz: async (pinCode, quizId) => {
     const config = {
       headers: {
@@ -125,6 +138,47 @@ export default {
     return await axios.post(
       `${apiServer}/classrooms/quizzes/${quizId}/submit/${questionId}`,
       data,
+      config
+    );
+  },
+
+  UpdateQuestion: async (pinCode, quizId, questionId, data) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+    };
+    return await axios.put(
+      `${apiServer}/admin/classrooms/${pinCode}/quizzes/${quizId}/questions/${questionId}`,
+      data,
+      config
+    );
+  },
+
+  addQuestion: async (pinCode, quizId, data) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+    };
+    return await axios.post(
+      `${apiServer}/admin/classrooms/${pinCode}/quizzes/${quizId}/questions`,
+      data,
+      config
+    );
+  },
+
+  deleteQuiz: async (classroomId, quizId) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+    };
+    return await axios.delete(
+      `${apiServer}/admin/classrooms/${classroomId}/quizzes/${quizId}`,
       config
     );
   },

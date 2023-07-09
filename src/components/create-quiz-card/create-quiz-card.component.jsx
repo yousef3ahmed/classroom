@@ -11,15 +11,18 @@ const CreateQuizCard = ({
   handleDoubleClick,
   formRef,
   quizField,
+  stat,
 }) => {
   const { question, option1, option2, option3, option4, correctAns } =
     quizField;
   return (
     <div className="create-quiz-main-area">
       <div className="main-area-header">
-        <h2 className="quiz-name">Create Quiz</h2>
+        <h2 className="quiz-name">
+          {stat === 0 ? "Create Quiz" : "Update Quiz"}
+        </h2>
         <button className="create-quiz-buttons" onClick={handleCreateQuiz}>
-          Create
+          {stat === 0 ? "Create" : "Update"}
         </button>
       </div>
       <div className="create-qution-card">

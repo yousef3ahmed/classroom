@@ -24,7 +24,7 @@ function App() {
         <Route path="/classroom/:pin_code/add-quiz" element={<AddQuiz />} />
         {/* <Route path="classroom/:pin_code/quizs" element={<NickNamePage />} /> */}
         <Route
-          path="/classroom/:pin_code/add-quiz/createQuiz"
+          path="/classroom/:pin_code/add-quiz/createQuiz/:stat"
           element={<CreateQuiz />}
         />
         <Route
