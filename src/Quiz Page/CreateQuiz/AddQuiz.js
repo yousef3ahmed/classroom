@@ -111,7 +111,7 @@ export default function AddQuiz() {
       dataObject[key] = value;
     }
 
-    navigate(`/classroom/${pinCode}/add-quiz/createQuiz`, {
+    navigate(`/classroom/${pinCode}/add-quiz/createQuiz/0`, {
       state: { headerData: dataObject },
     });
 

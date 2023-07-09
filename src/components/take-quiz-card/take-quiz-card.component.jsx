@@ -51,61 +51,69 @@ const TakeQuizCard = ({
 
           <div className="answer-options">
             <div className="answer-option">
-              <QuestionInput
-                type="text"
-                style={
-                  userAnswers[currentQuestionIndex] === "a"
-                    ? { backgroundColor: "green" }
-                    : { backgroundColor: "#f5f5f5" }
-                }
-                onClick={() => handleChooseAns(currentQuestionIndex, "a")}
-                readOnly
-                name="optionA"
-                value={optionA}
-              />
+              {optionA && (
+                <QuestionInput
+                  type="text"
+                  style={
+                    userAnswers[currentQuestionIndex] === "a"
+                      ? { backgroundColor: "green" }
+                      : { backgroundColor: "#f5f5f5" }
+                  }
+                  onClick={() => handleChooseAns(currentQuestionIndex, "a")}
+                  readOnly
+                  name="optionA"
+                  value={optionA}
+                />
+              )}
             </div>
             <div className="answer-option">
-              <QuestionInput
-                type="text"
-                style={
-                  userAnswers[currentQuestionIndex] === "b"
-                    ? { backgroundColor: "green" }
-                    : { backgroundColor: "#f8dabb" }
-                }
-                onClick={() => handleChooseAns(currentQuestionIndex, "b")}
-                readOnly
-                name="optionB"
-                value={optionB}
-              />
+              {optionB && (
+                <QuestionInput
+                  type="text"
+                  style={
+                    userAnswers[currentQuestionIndex] === "b"
+                      ? { backgroundColor: "green" }
+                      : { backgroundColor: "#f8dabb" }
+                  }
+                  onClick={() => handleChooseAns(currentQuestionIndex, "b")}
+                  readOnly
+                  name="optionB"
+                  value={optionB}
+                />
+              )}
             </div>
 
             <div className="answer-option">
-              <QuestionInput
-                type="text"
-                style={
-                  userAnswers[currentQuestionIndex] === "c"
-                    ? { backgroundColor: "green" }
-                    : { backgroundColor: "#fdfcdf" }
-                }
-                onClick={() => handleChooseAns(currentQuestionIndex, "c")}
-                readOnly
-                name="optionC"
-                value={optionC}
-              />
+              {optionC && (
+                <QuestionInput
+                  type="text"
+                  style={
+                    userAnswers[currentQuestionIndex] === "c"
+                      ? { backgroundColor: "green" }
+                      : { backgroundColor: "#fdfcdf" }
+                  }
+                  onClick={() => handleChooseAns(currentQuestionIndex, "c")}
+                  readOnly
+                  name="optionC"
+                  value={optionC}
+                />
+              )}
             </div>
             <div className="answer-option">
-              <QuestionInput
-                type="text"
-                style={
-                  userAnswers[currentQuestionIndex] === "d"
-                    ? { backgroundColor: "green" }
-                    : { backgroundColor: "#c4d6e8" }
-                }
-                onClick={() => handleChooseAns(currentQuestionIndex, "d")}
-                readOnly
-                name="optionD"
-                value={optionD}
-              />
+              {optionD && (
+                <QuestionInput
+                  type="text"
+                  style={
+                    userAnswers[currentQuestionIndex] === "d"
+                      ? { backgroundColor: "green" }
+                      : { backgroundColor: "#c4d6e8" }
+                  }
+                  onClick={() => handleChooseAns(currentQuestionIndex, "d")}
+                  readOnly
+                  name="optionD"
+                  value={optionD}
+                />
+              )}
             </div>
           </div>
         </div>

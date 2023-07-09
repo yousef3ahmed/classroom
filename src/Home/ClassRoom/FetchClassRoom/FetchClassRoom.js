@@ -29,9 +29,10 @@ function FetchClassRoom() {
   ) : (
     <>
       <section className={styles.gameContainer} style={{ marginTop: "20px" }}>
-        {classroom.map(
-          (oneclass) => oneclass.name && <Card ClassRoom={oneclass} />
-        )}
+        {classroom &&
+          classroom.map(
+            (oneclass) => oneclass.name && <Card ClassRoom={oneclass} />
+          )}
       </section>
     </>
   );
