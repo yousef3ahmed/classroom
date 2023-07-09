@@ -19,10 +19,10 @@ const CreateQuizCard = ({
     <div className="create-quiz-main-area">
       <div className="main-area-header">
         <h2 className="quiz-name">
-          {stat === 0 ? "Create Quiz" : "Update Quiz"}
+          {stat === "0" ? "Create Quiz" : "Update Quiz"}
         </h2>
         <button className="create-quiz-buttons" onClick={handleCreateQuiz}>
-          {stat === 0 ? "Create" : "Update"}
+          {stat === "0" ? "Create" : "Update"}
         </button>
       </div>
       <div className="create-qution-card">
