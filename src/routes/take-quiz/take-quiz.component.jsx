@@ -1,5 +1,5 @@
 import { useState, useEffect, Fragment } from "react";
-
+import { toast } from "react-toastify";
 import TakeQuizCard from "../../components/take-quiz-card/take-quiz-card.component";
 import apis from "../../apis/auth.js";
 
@@ -25,12 +25,32 @@ const TakeQize = () => {
       if (response.status === 200) {
         setQuizQuestions(response.data.questions);
       } else {
-        alert(`error in fetching data`);
+        // alert(`error in fetching data`);
+
+        toast.error(
+          <div>
+            some error accour when we fetching data <br />
+            try again
+          </div>,
+          {
+            autoClose: 5000,
+          }
+        );
+
         console.log("fail");
         navigate(`/classroom/${pin_code}`);
       }
     } catch (error) {
-      alert(error.response.data);
+      // alert(error.response.data);
+      toast.error(
+        <div>
+          some error accour in {error.response.data} <br />
+          try again
+        </div>,
+        {
+          autoClose: 5000,
+        }
+      );
       navigate(`/classroom/${pin_code}`);
       console.log(error);
     }
@@ -76,10 +96,29 @@ const TakeQize = () => {
       const response = await apis.endQuiz(quiz_id, data);
       console.log(response.data);
       if (response.status === 200) {
-        alert(`quiz submited successfully ${response.data}`);
+        // alert(`quiz submited successfully ${response.data}`);
+
+        toast.success(
+          <div>
+            quiz submited successfully ${response.data} <br />
+          </div>,
+          {
+            autoClose: 5000,
+          }
+        );
+
         navigate(`/classroom/${pin_code}`);
       } else {
-        alert(`error in submit your ${response.data}`);
+        // alert(`error in submit your ${response.data}`);
+        toast.error(
+          <div>
+            error in submit your ${response.data} <br />
+            try again
+          </div>,
+          {
+            autoClose: 5000,
+          }
+        );
         console.log("fail");
       }
     } catch (error) {

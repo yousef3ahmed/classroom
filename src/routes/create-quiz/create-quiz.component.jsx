@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect, useRef } from "react";
 import { v4 } from "uuid";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { CreateQuizContext } from "../../context/create-quiz.context";
 import CreateQuizCard from "../../components/create-quiz-card/create-quiz-card.component";
@@ -80,12 +81,30 @@ const CreateQuiz = () => {
             setQuestions([...questionsData, { ...defaultQuizField }]);
           }
         } else {
-          alert(`error in fetching data`);
+          // alert(`error in fetching data`);
+          toast.error(
+            <div>
+              error in fetching data <br />
+              try again
+            </div>,
+            {
+              autoClose: 5000,
+            }
+          );
           console.log("fail");
           navigate(`/classroom/${pin_code}`);
         }
       } catch (error) {
-        alert(error.response.data);
+        // alert(error.response.data);
+        toast.error(
+          <div>
+            error in { error.response.data } <br />
+            try again
+          </div>,
+          {
+            autoClose: 5000,
+          }
+        );
         navigate(`/classroom/${pin_code}`);
         console.log(error);
       }
@@ -213,7 +232,15 @@ const CreateQuiz = () => {
     event.preventDefault();
 
     if (quizField.correctAns === "") {
-      alert("provide the correct answer");
+      // alert("provide the correct answer");
+      toast.error(
+        <div>
+          please provide the correct answer 
+        </div>,
+        {
+          autoClose: 5000,
+        }
+      );
       return;
     }
     console.log(quizField);
