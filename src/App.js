@@ -8,6 +8,7 @@ import CreateClassRoom from "./CreateClassRoom/CreateClassRoom";
 import Quiz from "./Quiz Page/Quiz";
 import TakeQize from "./routes/take-quiz/take-quiz.component";
 import AddQuiz from "./Quiz Page/CreateQuiz/AddQuiz";
+import AddMail from "./Quiz Page/AddPoeple/AddMail";
 import "./App.css";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/create-classroom" element={<CreateClassRoom />} />
         <Route path="/classroom/:pin_code" element={<Quiz />} />
         <Route path="/classroom/:pin_code/add-quiz" element={<AddQuiz />} />
+        <Route path="/classroom/:pin_code/add-mail" element={<AddMail />} />
         {/* <Route path="classroom/:pin_code/quizs" element={<NickNamePage />} /> */}
         <Route
           path="/classroom/:pin_code/add-quiz/createQuiz/:stat"

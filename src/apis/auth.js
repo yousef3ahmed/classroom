@@ -45,6 +45,20 @@ export default {
     );
   },
 
+  AddMail: async (data, pinCode ) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+    };
+    return await axios.post(
+      `${apiServer}/classrooms/${pinCode}/members`,
+      data,
+      config
+    );
+  },
+
   createQuiz: async (data, pinCode) => {
     const config = {
       headers: {

@@ -4,8 +4,6 @@ import styles from "./Quiz.module.css";
 import Header from "./Header/Header";
 import FetchQuiz from "./FetchQuiz/FetchQuiz";
 import { useNavigate, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-
 
 
 function Quiz(  ) {
